@@ -17,6 +17,26 @@ import {Component, computed, input, signal} from '@angular/core';
   `,
 })
 export class D01SelectComponent {
+/* Don't do this :
+
+  options = input<string[]>();
+
+  selectedIndex = signal(-1);
+
+  select(idx: number): void {
+    this.selectedIndex.set(idx);
+  }
+
+  constructor() {
+    effect(() => {
+      // Reset selectedIndex when options change
+      this.options();
+      this.selectedIndex.set(-1);
+    }, { allowSignalWrites: true });
+  }
+  */
+
+  // Instead do this :
   options = input<string[]>();
 
   state = computed(() => {
