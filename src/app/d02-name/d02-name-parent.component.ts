@@ -1,4 +1,4 @@
-import {Component, computed, input, signal} from '@angular/core';
+import {Component, OnDestroy, OnInit, signal} from '@angular/core';
 import {D02NameComponent} from './d02-name.component';
 
 /**
@@ -18,7 +18,14 @@ import {D02NameComponent} from './d02-name.component';
     <button (click)="useJohn()">John</button>
   `,
 })
-export class D02NameParentComponent {
+export class D02NameParentComponent implements OnInit, OnDestroy {
+  ngOnInit(): void {
+      console.log('D02NameParentComponent: init');
+  }
+  ngOnDestroy(): void {
+    console.log('D02NameParentComponent: destroy');
+  }
+
   name = signal('bla');
 
   useBart() {

@@ -1,14 +1,20 @@
-import {Component} from '@angular/core';
+import {Component, signal} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {D01SelectParentComponent} from './d01-select/d01-select-parent.component';
 import {D02NameParentComponent} from './d02-name/d02-name-parent.component';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, D01SelectParentComponent, D02NameParentComponent],
+  imports: [RouterOutlet, D01SelectParentComponent, D02NameParentComponent, NgClass],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'modern-angular';
+  selectedDemo = signal('');
+
+  onClick(demo: string) {
+    this.selectedDemo.set(demo);
+  }
 }

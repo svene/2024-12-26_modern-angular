@@ -1,4 +1,4 @@
-import {Component, computed, input, signal} from '@angular/core';
+import {Component, OnDestroy, OnInit, signal} from '@angular/core';
 import {D01SelectComponent} from './d01-select.component';
 
 /**
@@ -17,8 +17,15 @@ import {D01SelectComponent} from './d01-select.component';
     <button (click)="useSet2()">use item set 2</button>
   `,
 })
-export class D01SelectParentComponent {
+export class D01SelectParentComponent implements OnInit, OnDestroy {
   options = signal<string[]>(['a', 'b']);
+
+  ngOnInit(): void {
+    console.log('D01SelectParentComponent: init');
+  }
+  ngOnDestroy(): void {
+    console.log('D01SelectParentComponent: destroy');
+  }
 
   useSet1() {
     this.options.set(['X', 'Y', 'Z'])

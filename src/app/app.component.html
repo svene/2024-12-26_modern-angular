@@ -1,7 +1,31 @@
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+      Hello World
+    </h1>
+    <p class="subtitle">
+      My first website with <strong>Bulma</strong>!
+    </p>
+  </div>
+</section>
+
+<div class="tabs">
+  <ul>
+    <li (click)="onClick('select')" [ngClass]="{'is-active': selectedDemo() === 'select'}"><a>Select</a></li>
+    <li (click)="onClick('name')" [ngClass]="{'is-active': selectedDemo() === 'name'}"><a>Name</a></li>
+  </ul>
+</div>
+
 <main>
-  <app-d01-select-parent></app-d01-select-parent>
-  <hr>
-  <app-d02-name-parent></app-d02-name-parent>
+  @switch (selectedDemo()) {
+    @case ("select") {
+      <app-d01-select-parent></app-d01-select-parent>
+    }
+    @case ("name") {
+      <app-d02-name-parent></app-d02-name-parent>
+    }
+  }
 </main>
 
 
