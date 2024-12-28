@@ -10,14 +10,14 @@
   </div>
 </section>
 
+<div class="container">
 <div class="tabs">
   <ul>
     <li (click)="onClick('select')" [ngClass]="{'is-active': selectedDemo() === 'select'}"><a>Select</a></li>
     <li (click)="onClick('name')" [ngClass]="{'is-active': selectedDemo() === 'name'}"><a>Name</a></li>
   </ul>
-</div>
 
-<main>
+</div>
   @switch (selectedDemo()) {
     @case ("select") {
       <app-d01-select-parent></app-d01-select-parent>
@@ -26,6 +26,9 @@
       <app-d02-name-parent></app-d02-name-parent>
     }
   }
+</div>
+
+<main>
 </main>
 
 

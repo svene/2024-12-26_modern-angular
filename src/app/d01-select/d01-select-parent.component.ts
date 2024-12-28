@@ -10,11 +10,14 @@ import {D01SelectComponent} from './d01-select.component';
     D01SelectComponent
   ],
   template: `
-    <h2>Demo 01: Select</h2>
-    <div>Taken from <a href="https://medium.com/@amosisaila/learn-when-to-use-signal-effects-in-angular-and-why-you-should-avoid-overusing-them-a0d6516032c1" target="_blank">here</a> </div>
     <app-d01-select [options]="options()"></app-d01-select>
-    <button (click)="useSet1()">use item set 1</button>
-    <button (click)="useSet2()">use item set 2</button>
+    <hr>
+    <div class="field is-grouped">
+    <button class="button is-link" (click)="useSet1()">use item set 1</button>
+    <button class="button is-link" (click)="useSet2()">use item set 2</button>
+    </div>
+    <hr>
+    <div>Taken from <a href="https://medium.com/@amosisaila/learn-when-to-use-signal-effects-in-angular-and-why-you-should-avoid-overusing-them-a0d6516032c1" target="_blank">here</a> </div>
   `,
 })
 export class D01SelectParentComponent implements OnInit, OnDestroy {

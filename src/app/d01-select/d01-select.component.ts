@@ -1,19 +1,20 @@
 import {Component, computed, input, signal} from '@angular/core';
+import {NgClass} from '@angular/common';
 
 /**
  * See https://medium.com/@amosisaila/learn-when-to-use-signal-effects-in-angular-and-why-you-should-avoid-overusing-them-a0d6516032c1
  */
 @Component({
   selector: 'app-d01-select',
-  imports: [],
+  imports: [
+    NgClass
+  ],
   template: `
-    <ul>
+    <div class="field is-grouped">
       @for (option of options(); track option; ) {
-        <li (click)="select($index)">item {{ option }} @if ($index === state().selectedIndex()) {SELECTED} @else {
-          CLICK ME
-        }</li>
+        <button class="button is-link" [ngClass]="{'is-link': $index === state().selectedIndex()}" (click)="select($index)">item {{ option }}</button>
       }
-    </ul>
+    </div>
   `,
 })
 export class D01SelectComponent {
