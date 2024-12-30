@@ -25,10 +25,10 @@ export class D03SelectParentComponent implements OnInit, OnDestroy {
   })
 
   ngOnInit(): void {
-    console.log('D01SelectParentComponent: init');
+    console.log('D03SelectParentComponent: init');
   }
   ngOnDestroy(): void {
-    console.log('D01SelectParentComponent: destroy');
+    console.log('D03SelectParentComponent: destroy');
   }
 
   selectSet(set: number) {
