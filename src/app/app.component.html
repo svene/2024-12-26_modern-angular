@@ -13,13 +13,14 @@
 <div class="container">
 <div class="tabs">
   <ul>
-    <li (click)="selection.subject.next('d01-select')" [ngClass]="{'is-active': selectedDemo() === 'd01-select'}"><a>Select</a></li>
-    <li (click)="selection.subject.next('d02-name')" [ngClass]="{'is-active': selectedDemo() === 'd02-name'}"><a>Name</a></li>
-    <li (click)="selection.subject.next('d03-select')" [ngClass]="{'is-active': selectedDemo() === 'd03-select'}"><a>Select 2</a></li>
+    <li (click)="selectDemo('d01-select')" [ngClass]="{'is-active': selection() === 'd01-select'}"><a>Select</a></li>
+    <li (click)="selectDemo('d02-name')" [ngClass]="{'is-active': selection() === 'd02-name'}"><a>Name</a></li>
+    <li (click)="selectDemo('d03-select')" [ngClass]="{'is-active': selection() === 'd03-select'}"><a>Select 2</a></li>
+    <li (click)="selectDemo('d04-name')" [ngClass]="{'is-active': selection() === 'd04-name'}"><a>Name 2</a></li>
   </ul>
 
 </div>
-  @switch (selectedDemo()) {
+  @switch (selection()) {
     @case ('d01-select') {
       <app-d01-select-parent></app-d01-select-parent>
     }
@@ -28,6 +29,9 @@
     }
     @case ('d03-select') {
       <app-d03-select-parent></app-d03-select-parent>
+    }
+    @case ('d04-name') {
+      <app-d04-name-parent></app-d04-name-parent>
     }
   }
 </div>

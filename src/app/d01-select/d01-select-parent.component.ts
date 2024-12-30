@@ -21,7 +21,7 @@ import {D01SelectComponent} from './d01-select.component';
   `,
 })
 export class D01SelectParentComponent implements OnInit, OnDestroy {
-  options = signal<string[]>(['a', 'b']);
+  options = signal<string[]>(set1);
 
   ngOnInit(): void {
     console.log('D01SelectParentComponent: init');
@@ -31,11 +31,14 @@ export class D01SelectParentComponent implements OnInit, OnDestroy {
   }
 
   useSet1() {
-    this.options.set(['X', 'Y', 'Z'])
+    this.options.set(set1)
   }
 
   useSet2() {
-    this.options.set(['a', 'b', 'c'])
+    this.options.set(set2)
   }
 
 }
+
+const set1 = ['a', 'b', 'c'];
+const set2 = ['X', 'Y', 'Z'];
