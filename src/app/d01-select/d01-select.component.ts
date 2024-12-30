@@ -1,4 +1,4 @@
-import {Component, computed, input, signal} from '@angular/core';
+import {Component, input, linkedSignal, signal} from '@angular/core';
 import {NgClass} from '@angular/common';
 
 /**
@@ -12,45 +12,20 @@ import {NgClass} from '@angular/common';
   template: `
     <div class="field is-grouped">
       @for (option of options(); track option; ) {
-        <button class="button is-link" [ngClass]="{'is-link': $index === state().selectedIndex()}" (click)="select($index)">item {{ option }}</button>
+        <button class="button is-link" [ngClass]="{'is-link': $index === selectedIndex()}" (click)="select($index)">item {{ option }}</button>
       }
     </div>
   `,
 })
 export class D01SelectComponent {
-/* Don't do this :
-
   options = input<string[]>();
-
-  selectedIndex = signal(-1);
-
-  select(idx: number): void {
-    this.selectedIndex.set(idx);
-  }
-
-  constructor() {
-    effect(() => {
-      // Reset selectedIndex when options change
-      this.options();
-      this.selectedIndex.set(-1);
-    }, { allowSignalWrites: true });
-  }
-  */
-
-  // Instead do this :
-  options = input<string[]>();
-
-  state = computed(() => {
-    const r = {
-      options: this.options(),
-      selectedIndex: signal(-1) // WritableSignal inside the computed()
-    };
-    console.log('new state'); // NOTE: changing options from outside causes the whole state to be recalculated. Setting just 'selectedIndex' does not.
-    return r;
+  selectedIndex = linkedSignal(() => {
+    this.options();
+    return -1;
   });
 
   select(idx: number): void {
-    this.state().selectedIndex.set(idx);
+    this.selectedIndex.set(idx);
   }
 
 }
