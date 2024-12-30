@@ -13,9 +13,9 @@
 <div class="container">
 <div class="tabs">
   <ul>
-    <li (click)="btnClick$$.next('d01-select')" [ngClass]="{'is-active': selectedDemo() === 'd01-select'}"><a>Select</a></li>
-    <li (click)="btnClick$$.next('d02-name')" [ngClass]="{'is-active': selectedDemo() === 'd02-name'}"><a>Name</a></li>
-    <li (click)="btnClick$$.next('d03-select')" [ngClass]="{'is-active': selectedDemo() === 'd03-select'}"><a>Select 2</a></li>
+    <li (click)="selection.subject.next('d01-select')" [ngClass]="{'is-active': selectedDemo() === 'd01-select'}"><a>Select</a></li>
+    <li (click)="selection.subject.next('d02-name')" [ngClass]="{'is-active': selectedDemo() === 'd02-name'}"><a>Name</a></li>
+    <li (click)="selection.subject.next('d03-select')" [ngClass]="{'is-active': selectedDemo() === 'd03-select'}"><a>Select 2</a></li>
   </ul>
 
 </div>
