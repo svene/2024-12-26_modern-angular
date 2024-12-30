@@ -1,7 +1,6 @@
-import {Component, computed, OnDestroy, OnInit, signal, ViewChild} from '@angular/core';
+import {Component, computed, OnDestroy, OnInit} from '@angular/core';
 import {D03SelectComponent} from './d03-select.component';
-import {BehaviorSubject} from 'rxjs';
-import {toSignal} from '@angular/core/rxjs-interop';
+import {RxjsSignal} from '../support/RxjsSignal';
 
 /**
  * See https://medium.com/@amosisaila/learn-when-to-use-signal-effects-in-angular-and-why-you-should-avoid-overusing-them-a0d6516032c1
@@ -15,16 +14,15 @@ import {toSignal} from '@angular/core/rxjs-interop';
     <app-d03-select [options]="options()"></app-d03-select>
     <hr>
     <div class="field is-grouped">
-      <button class="button is-link" (click)="btnClick$$.next(1)">use item set 1</button>
-      <button class="button is-link" (click)="btnClick$$.next(2)">use item set 2</button>
+      <button class="button is-link" (click)="selectedSet.subject.next(1)">use item set 1</button>
+      <button class="button is-link" (click)="selectedSet.subject.next(2)">use item set 2</button>
     </div>
   `,
 })
 export class D03SelectParentComponent implements OnInit, OnDestroy {
-  btnClick$$ = new BehaviorSubject<number>(1);
-  btnClick = toSignal(this.btnClick$$)
+  selectedSet = new RxjsSignal<number>(1);
   options = computed(() => {
-    return this.btnClick() === 1 ? ['a', 'b', 'c'] : ['X', 'Y', 'Z'];
+    return this.selectedSet.signal() === 1 ? ['a', 'b', 'c'] : ['X', 'Y', 'Z'];
   })
 
   ngOnInit(): void {
