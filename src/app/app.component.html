@@ -15,6 +15,7 @@
   <ul>
     <li (click)="onClick('d01-select')" [ngClass]="{'is-active': selectedDemo() === 'd01-select'}"><a>Select</a></li>
     <li (click)="onClick('d02-name')" [ngClass]="{'is-active': selectedDemo() === 'd02-name'}"><a>Name</a></li>
+    <li (click)="onClick('d03-select')" [ngClass]="{'is-active': selectedDemo() === 'd03-select'}"><a>Select 2</a></li>
   </ul>
 
 </div>
@@ -24,6 +25,9 @@
     }
     @case ('d02-name') {
       <app-d02-name-parent></app-d02-name-parent>
+    }
+    @case ('d03-select') {
+      <app-d03-select-parent></app-d03-select-parent>
     }
   }
 </div>
