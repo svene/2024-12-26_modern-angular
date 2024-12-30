@@ -19,9 +19,9 @@ import {NgClass} from '@angular/common';
 })
 export class D01SelectComponent {
   options = input<string[]>();
-  selectedIndex = linkedSignal(() => {
-    this.options();
-    return -1;
+  selectedIndex = linkedSignal({
+    source: this.options,
+    computation: (n, o) => -1,
   });
 
   select(idx: number): void {
