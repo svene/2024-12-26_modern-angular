@@ -13,16 +13,16 @@
 <div class="container">
 <div class="tabs">
   <ul>
-    <li (click)="onClick('select')" [ngClass]="{'is-active': selectedDemo() === 'select'}"><a>Select</a></li>
-    <li (click)="onClick('name')" [ngClass]="{'is-active': selectedDemo() === 'name'}"><a>Name</a></li>
+    <li (click)="onClick('d01-select')" [ngClass]="{'is-active': selectedDemo() === 'd01-select'}"><a>Select</a></li>
+    <li (click)="onClick('d02-name')" [ngClass]="{'is-active': selectedDemo() === 'd02-name'}"><a>Name</a></li>
   </ul>
 
 </div>
   @switch (selectedDemo()) {
-    @case ('select') {
+    @case ('d01-select') {
       <app-d01-select-parent></app-d01-select-parent>
     }
-    @case ('name') {
+    @case ('d02-name') {
       <app-d02-name-parent></app-d02-name-parent>
     }
   }

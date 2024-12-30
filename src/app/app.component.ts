@@ -12,10 +12,10 @@ import {NgClass} from '@angular/common';
 })
 export class AppComponent {
   title = 'modern-angular';
-  selectedDemo = signal<Demo>('name');
+  selectedDemo = signal<Demo>('d01-select');
 
   onClick(demo: Demo) {
     this.selectedDemo.set(demo);
   }
 }
-export type Demo = 'select' | 'name';
+export type Demo = 'd01-select' | 'd02-name';
