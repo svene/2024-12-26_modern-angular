@@ -1,5 +1,4 @@
 import {Component, signal} from '@angular/core';
-import {D02NameComponent} from '../d02-name/d02-name.component';
 import {D04NameComponent} from './d04-name.component';
 
 @Component({
