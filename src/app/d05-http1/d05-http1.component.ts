@@ -1,19 +1,21 @@
-import {Component, input, linkedSignal, signal} from '@angular/core';
-import {JsonPipe, NgClass} from '@angular/common';
+import {Component} from '@angular/core';
+import {JsonPipe} from '@angular/common';
 import {httpResource} from '@angular/common/http';
 
-/**
- * See https://medium.com/@amosisaila/learn-when-to-use-signal-effects-in-angular-and-why-you-should-avoid-overusing-them-a0d6516032c1
- */
+export interface X {
+  firstName: string,
+}
 @Component({
   selector: 'app-d05-http1',
   template: `
     <div class="field is-grouped">
-      <button class="button" (click)="callBackend()">Call Backend</button>
+      <button class="button">Call Backend</button>
     </div>
     @if (user.hasValue()) {
       <div>value</div>
-      <div>{{ user.value() |json  }}</div>
+      <div>{{ user.value() |json }}</div>
+      <hr>
+      <div>Firstname: {{ user.value().firstName }}</div>
     } @else if (user.error()) {
       <div>error</div>
     } @else if (user.isLoading()) {
@@ -27,7 +29,7 @@ import {httpResource} from '@angular/common/http';
 export class D05Http1Component {
 
   //userId = input.required<string>();
-  user = httpResource(() => ({
+  user = httpResource<X | undefined>(() => ({
     url: `https://dummyjson.com/users/1`,
   }));
 
