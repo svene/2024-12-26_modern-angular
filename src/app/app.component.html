@@ -1,4 +1,3 @@
-
 <section class="section">
   <div class="container">
     <h1 class="title">
@@ -11,33 +10,45 @@
 </section>
 
 <div class="container">
-<div class="tabs">
-  <ul>
-    <li (click)="selectDemo('d01-select')" [ngClass]="{'is-active': selection() === 'd01-select'}"><a>Select</a></li>
-    <li (click)="selectDemo('d02-name')" [ngClass]="{'is-active': selection() === 'd02-name'}"><a>Name</a></li>
-    <li (click)="selectDemo('d03-select')" [ngClass]="{'is-active': selection() === 'd03-select'}"><a>Select 2</a></li>
-    <li (click)="selectDemo('d04-name')" [ngClass]="{'is-active': selection() === 'd04-name'}"><a>Name 2</a></li>
-  </ul>
+  <div class="columns">
 
-</div>
-  @switch (selection()) {
-    @case ('d01-select') {
-      <app-d01-select-parent></app-d01-select-parent>
+    <div class="column is-2">
+    <!-- See https://bulma.io/documentation/components/menu/ -->
+    <aside class="menu">
+      <p class="menu-label">Signals</p>
+      <ul class="menu-list">
+        <li (click)="selectDemo('d01-select')"><a [ngClass]="{'is-active': selection() === 'd01-select'}">Select</a></li>
+        <li (click)="selectDemo('d02-name')"><a [ngClass]="{'is-active': selection() === 'd02-name'}">Name</a></li>
+        <li (click)="selectDemo('d03-select')"><a [ngClass]="{'is-active': selection() === 'd03-select'}">Select 2</a></li>
+        <li (click)="selectDemo('d04-name')"><a [ngClass]="{'is-active': selection() === 'd04-name'}">Name 2</a></li>
+      </ul>
+      <p class="menu-label">HTTP</p>
+      <ul class="menu-list">
+        <li (click)="selectDemo('d05-http1')"><a [ngClass]="{'is-active': selection() === 'd05-http1'}">HTTP 1 (n/a)</a></li>
+      </ul>
+    </aside>
+    </div>
+
+    <div class="column is-10">
+    @switch (selection()) {
+      @case ('d01-select') {
+        <app-d01-select-parent></app-d01-select-parent>
+      }
+      @case ('d02-name') {
+        <app-d02-name-parent></app-d02-name-parent>
+      }
+      @case ('d03-select') {
+        <app-d03-select-parent></app-d03-select-parent>
+      }
+      @case ('d04-name') {
+        <app-d04-name-parent></app-d04-name-parent>
+      }
     }
-    @case ('d02-name') {
-      <app-d02-name-parent></app-d02-name-parent>
-    }
-    @case ('d03-select') {
-      <app-d03-select-parent></app-d03-select-parent>
-    }
-    @case ('d04-name') {
-      <app-d04-name-parent></app-d04-name-parent>
-    }
-  }
+  </div>
 </div>
 
 <main>
 </main>
 
 
-<router-outlet />
+<router-outlet/>

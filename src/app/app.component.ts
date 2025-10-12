@@ -20,4 +20,4 @@ export class AppComponent {
     this.selection.set(v);
   }
 }
-export type Demo = 'd01-select' | 'd02-name' | 'd03-select' | 'd04-name' ;
+export type Demo = 'd01-select' | 'd02-name' | 'd03-select' | 'd04-name'  | 'd05-http1' ;
