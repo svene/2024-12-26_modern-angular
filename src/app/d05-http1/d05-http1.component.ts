@@ -48,7 +48,9 @@ export class D05Http1Component {
   );
 
   user = httpResource(
-    () => `https://dummyjson.com/users/1`,
+    () => ({
+      url: `https://dummyjson.com/users/1`,
+    }),
     {
       parse: UsersSchema.parse,
     }
