@@ -1,10 +1,17 @@
 import {Component, resource} from '@angular/core';
 import {JsonPipe} from '@angular/common';
 import {httpResource} from '@angular/common/http';
+import {z as zod} from 'zod';
 
 export interface X {
   firstName: string,
 }
+
+const UsersSchema = zod.object({
+  firstName: zod.string(),
+  lastName: zod.string(),
+})
+
 @Component({
   selector: 'app-d05-http1',
   template: `
@@ -32,21 +39,21 @@ export interface X {
 export class D05Http1Component {
 
   user0 = resource<X, unknown>({
-    loader: async () => {
-      const u = await fetch(`https://dummyjson.com/users/1`);
-      if (!u.ok) throw new Error('load error');
-      return await u.json();
+      loader: async () => {
+        const u = await fetch(`https://dummyjson.com/users/1`);
+        if (!u.ok) throw new Error('load error');
+        return await u.json();
+      }
     }
-    }
-
   );
 
-  user = httpResource<X | undefined>(() => ({
-    url: `https://dummyjson.com/users/1`,
-  }));
+  user = httpResource(
+    () => `https://dummyjson.com/users/1`,
+    {
+      parse: UsersSchema.parse,
+    }
+  );
 
-  callBackend(): void {
-  }
 
   reload() {
     this.user.reload();
