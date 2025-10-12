@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, resource} from '@angular/core';
 import {JsonPipe} from '@angular/common';
 import {httpResource} from '@angular/common/http';
 
@@ -8,19 +8,22 @@ export interface X {
 @Component({
   selector: 'app-d05-http1',
   template: `
-    <div class="field is-grouped">
-      <button class="button">Call Backend</button>
-    </div>
+    <p>
+      <a href="https://www.youtube.com/watch?v=W7-lsoL-Gi8">See https://www.youtube.com/watch?v=W7-lsoL-Gi8</a>
+      <a href="https://www.youtube.com/watch?v=GXzPlaF3-bE&t=2s">See https://www.youtube.com/watch?v=GXzPlaF3-bE&t=2s</a>
+    </p>
     @if (user.hasValue()) {
       <div>value</div>
       <div>{{ user.value() |json }}</div>
       <hr>
-      <div>Firstname: {{ user.value().firstName }}</div>
+      <div>Firstname (via httpResource): {{ user.value().firstName }}</div>
+      <button class="button" (click)="reload()">Reload</button>
     } @else if (user.error()) {
       <div>error</div>
     } @else if (user.isLoading()) {
       <div>Loading user info...</div>
     }
+    <div>Firstname (via resource) 0 : {{ user0.value()?.firstName }}</div>
   `,
   imports: [
     JsonPipe
@@ -28,7 +31,16 @@ export interface X {
 })
 export class D05Http1Component {
 
-  //userId = input.required<string>();
+  user0 = resource<X, unknown>({
+    loader: async () => {
+      const u = await fetch(`https://dummyjson.com/users/1`);
+      if (!u.ok) throw new Error('load error');
+      return await u.json();
+    }
+    }
+
+  );
+
   user = httpResource<X | undefined>(() => ({
     url: `https://dummyjson.com/users/1`,
   }));
@@ -36,4 +48,7 @@ export class D05Http1Component {
   callBackend(): void {
   }
 
+  reload() {
+    this.user.reload();
+  }
 }
