@@ -13,7 +13,7 @@ const UsersSchema = zod.object({
   lastName: zod.string(),
 })
 
-const searchFormSchema: Schema<string> = schema((path) => {
+const idSchema: Schema<string> = schema((path) => {
   required(path, {message: 'This field is required'});
 });
 
@@ -67,10 +67,7 @@ export class D06Sigform1Component {
   })
 
   protected readonly searchForm = form(this.formModel, (path) => {
-    apply(path.id, searchFormSchema);
-
-    // NOTE (not needed here):
-    // multi-field validation (e.g. apply required of input field only when other checkbox is checked: https://www.youtube.com/watch?v=CEAVN_pkCXU 14:30)
+    apply(path.id, idSchema);
 
     // Form submission:
     // https://www.youtube.com/watch?v=CEAVN_pkCXU 15:45
