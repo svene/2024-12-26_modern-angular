@@ -18,7 +18,7 @@ const searchFormSchema: Schema<string> = schema((path) => {
 });
 
 @Component({
-  selector: 'app-d06-sigform-http1',
+  selector: 'app-d06-sigform1',
   template: `
     <p>
       <a href="https://www.youtube.com/watch?v=CEAVN_pkCXU">See https://www.youtube.com/watch?v=CEAVN_pkCXU</a>
@@ -50,7 +50,7 @@ const searchFormSchema: Schema<string> = schema((path) => {
     JsonPipe
   ]
 })
-export class D06SigformHttp1Component {
+export class D06Sigform1Component {
 
   user = httpResource(
     () => {

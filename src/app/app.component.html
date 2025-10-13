@@ -25,7 +25,7 @@
       <p class="menu-label">HTTP</p>
       <ul class="menu-list">
         <li (click)="selectDemo('d05-http1')"><a [ngClass]="{'is-active': selection() === 'd05-http1'}">HTTP 1</a></li>
-        <li (click)="selectDemo('d06-sigform-http1')"><a [ngClass]="{'is-active': selection() === 'd06-sigform-http1'}">Signal Forms</a></li>
+        <li (click)="selectDemo('d06-sigform1')"><a [ngClass]="{'is-active': selection() === 'd06-sigform1'}">Signal Forms 1</a></li>
       </ul>
     </aside>
     </div>
@@ -47,8 +47,8 @@
       @case ('d05-http1') {
         <app-d05-http1></app-d05-http1>
       }
-      @case ('d06-sigform-http1') {
-        <app-d06-sigform-http1></app-d06-sigform-http1>
+      @case ('d06-sigform1') {
+        <app-d06-sigform1></app-d06-sigform1>
       }
     }
   </div>
