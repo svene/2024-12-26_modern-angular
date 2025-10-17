@@ -30,6 +30,7 @@
       <ul class="menu-list">
         <li (click)="selectDemo('d06-sigform1')"><a [ngClass]="{'is-active': selection() === 'd06-sigform1'}">Simple Validation</a></li>
         <li (click)="selectDemo('d07-sigform2')"><a [ngClass]="{'is-active': selection() === 'd07-sigform2'}">Multifield Validation</a></li>
+        <li (click)="selectDemo('d08-sigform3')"><a [ngClass]="{'is-active': selection() === 'd08-sigform3'}">Flight Booking</a></li>
       </ul>
     </aside>
     </div>
@@ -56,6 +57,9 @@
       }
       @case ('d07-sigform2') {
         <app-d07-sigform2></app-d07-sigform2>
+      }
+      @case ('d08-sigform3') {
+        <app-d08-sigform3></app-d08-sigform3>
       }
     }
   </div>
