@@ -1,8 +1,32 @@
 import {Component, inject, linkedSignal} from '@angular/core';
-import {FlightDetailStore} from './flight-detail.store';
-import {Control, customError, FieldPath, form, minLength, required, validate} from '@angular/forms/signals';
+import {Flight, FlightDetailStore} from './flight-detail.store';
+import {Control, customError, FieldPath, form, minLength, required, schema, validate} from '@angular/forms/signals';
 import {JsonPipe, NgClass} from '@angular/common';
 import {ValidationErrorsComponent} from './common/validation-errors.component';
+
+const validateCity = (path: FieldPath<string>, allowed: string[]): void => {
+  validate(path, (ctx) => {
+  const value = ctx.value();
+  if (allowed.includes(value)) {
+    return null;
+  }
+
+  return customError({
+    kind: 'city',
+    value,
+    allowed,
+  });
+});
+}
+
+export const formSchema = schema<Flight>((path) => {
+  required(path.id);
+  required(path.from);
+  required(path.to);
+
+  minLength(path.from, 3);
+  validateCity(path.from, ['Graz', 'Hamburg', 'Zürich']);
+});
 
 @Component({
   selector: 'app-d08-sigform3',
@@ -21,31 +45,6 @@ export class D08Sigform3Component {
 
   flight = linkedSignal(() => this.store.flight());
 
-  validateCity(path: FieldPath<string>, allowed: string[]): void {
-    validate(path, (ctx) => {
-      const value = ctx.value();
-      if (allowed.includes(value)) {
-        return null;
-      }
-
-      return customError({
-        kind: 'city',
-        value,
-        allowed,
-      });
-    });
-  }
-
-  flightForm = form(this.flight, (path) => {
-    required(path.id, { message: 'Please enter a value!' });
-    required(path.from, { message: 'Please enter a value!' });
-    required(path.to, { message: 'Please enter a value!' });
-
-    minLength(path.from, 3);
-
-    const allowed = ['Graz', 'Hamburg', 'Zürich'];
-    this.validateCity(path.from, ['Graz', 'Hamburg', 'Zürich']);
-  });
-
+  flightForm = form(this.flight, formSchema);
 
 }
