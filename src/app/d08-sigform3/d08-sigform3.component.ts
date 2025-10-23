@@ -1,7 +1,7 @@
 import {Component, inject, linkedSignal} from '@angular/core';
 import {FlightDetailStore} from './flight-detail.store';
 import {Control, customError, FieldPath, form, minLength, required, validate} from '@angular/forms/signals';
-import {JsonPipe} from '@angular/common';
+import {JsonPipe, NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-d08-sigform3',
@@ -10,6 +10,7 @@ import {JsonPipe} from '@angular/common';
   imports: [
     Control,
     JsonPipe,
+    NgClass,
   ]
 })
 export class D08Sigform3Component {
