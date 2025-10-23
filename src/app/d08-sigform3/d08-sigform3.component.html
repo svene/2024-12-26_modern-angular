@@ -10,8 +10,11 @@
         placeholder="Enter id"
       >
     </div>
-    <p class="help">The ID of the flight</p>
-    <pre>{{ flightForm.id().errors() | json }}</pre>
+    @if(flightForm.id().errors().length === 0) {
+      <p class="help">The ID of the flight</p>
+    } @else {
+      <p class="help is-danger">{{ flightForm.id().errors()[0].message }}</p>
+    }
   </div>
 
   <div class="field">
@@ -24,7 +27,11 @@
         placeholder="Enter airport"
       >
     </div>
-    <p class="help">Starting airport</p>
+    @if(flightForm.from().errors().length === 0) {
+      <p class="help">Starting airport</p>
+    } @else {
+      <p>{{flightForm.from().errors() |json}}</p>
+    }
   </div>
 
   <div class="field">
@@ -37,7 +44,11 @@
         placeholder="Enter airport"
       >
     </div>
-    <p class="help">Destination airport</p>
+    @if(flightForm.to().errors().length === 0) {
+      <p class="help">Destination airport</p>
+    } @else {
+      <p>{{flightForm.to().errors() |json}}</p>
+    }
   </div>
 
 </form>

@@ -1,6 +1,6 @@
 import {Component, inject, linkedSignal} from '@angular/core';
 import {FlightDetailStore} from './flight-detail.store';
-import {Control, form, required} from '@angular/forms/signals';
+import {Control, customError, form, minLength, required, validate} from '@angular/forms/signals';
 import {JsonPipe} from '@angular/common';
 
 @Component({
@@ -9,7 +9,7 @@ import {JsonPipe} from '@angular/common';
   styleUrls: ['./d08-sigform3.component.scss'],
   imports: [
     Control,
-    JsonPipe
+    JsonPipe,
   ]
 })
 export class D08Sigform3Component {
@@ -19,9 +19,26 @@ export class D08Sigform3Component {
   flight = linkedSignal(() => this.store.flight());
 
   flightForm = form(this.flight, (path) => {
-    required(path.id)
-    required(path.from)
-    required(path.to)
+    required(path.id, { message: 'Please enter a value!' });
+    required(path.from, { message: 'Please enter a value!' });
+    required(path.to, { message: 'Please enter a value!' });
+
+    minLength(path.from, 3);
+
+    const allowed = ['Graz', 'Hamburg', 'Zürich'];
+    validate(path.from, (ctx) => {
+      const value = ctx.value();
+      if (allowed.includes(value)) {
+        return null;
+      }
+
+      return customError({
+        kind: 'city',
+        value,
+        allowed,
+      });
+    });
   });
+
 
 }
