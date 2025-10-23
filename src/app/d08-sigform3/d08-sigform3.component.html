@@ -14,7 +14,7 @@
     @if(flightForm.id().errors().length === 0) {
       <p class="help">The ID of the flight</p>
     } @else {
-      <p class="help is-danger">{{ flightForm.id().errors()[0].message }}</p>
+      <app-validation-errors [errors]="flightForm.id().errors()" />
     }
   </div>
 
@@ -32,6 +32,7 @@
     @if(flightForm.from().errors().length === 0) {
       <p class="help">Starting airport</p>
     } @else {
+      <app-validation-errors [errors]="flightForm.from().errors()" />
       <p>{{flightForm.from().errors() |json}}</p>
     }
   </div>
@@ -50,6 +51,7 @@
     @if(flightForm.to().errors().length === 0) {
       <p class="help">Destination airport</p>
     } @else {
+      <app-validation-errors [errors]="flightForm.to().errors()" />
       <p>{{flightForm.to().errors() |json}}</p>
     }
   </div>

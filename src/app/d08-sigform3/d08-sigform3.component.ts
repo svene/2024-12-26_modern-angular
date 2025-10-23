@@ -2,6 +2,7 @@ import {Component, inject, linkedSignal} from '@angular/core';
 import {FlightDetailStore} from './flight-detail.store';
 import {Control, customError, FieldPath, form, minLength, required, validate} from '@angular/forms/signals';
 import {JsonPipe, NgClass} from '@angular/common';
+import {ValidationErrorsComponent} from './common/validation-errors.component';
 
 @Component({
   selector: 'app-d08-sigform3',
@@ -11,6 +12,7 @@ import {JsonPipe, NgClass} from '@angular/common';
     Control,
     JsonPipe,
     NgClass,
+    ValidationErrorsComponent,
   ]
 })
 export class D08Sigform3Component {
