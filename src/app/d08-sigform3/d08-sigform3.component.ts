@@ -5,6 +5,7 @@ import {Control, form, required} from '@angular/forms/signals';
 @Component({
   selector: 'app-d08-sigform3',
   templateUrl: './d08-sigform3.component.html',
+  styleUrls: ['./d08-sigform3.component.scss'],
   imports: [
     Control
   ]

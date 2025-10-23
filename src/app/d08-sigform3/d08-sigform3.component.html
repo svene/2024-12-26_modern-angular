@@ -1,4 +1,5 @@
 <form>
+
   <div class="field">
     <label class="label">Id</label>
     <div class="control">
@@ -9,5 +10,33 @@
         placeholder="Enter id"
       >
     </div>
+    <p class="help">The ID of the flight</p>
   </div>
+
+  <div class="field">
+    <label class="label">From</label>
+    <div class="control">
+      <input
+        [control]="flightForm.from"
+        type="text"
+        class="input"
+        placeholder="Enter airport"
+      >
+    </div>
+    <p class="help">Starting airport</p>
+  </div>
+
+  <div class="field">
+    <label class="label">To</label>
+    <div class="control">
+      <input
+        [control]="flightForm.to"
+        type="text"
+        class="input"
+        placeholder="Enter airport"
+      >
+    </div>
+    <p class="help">Destination airport</p>
+  </div>
+
 </form>
