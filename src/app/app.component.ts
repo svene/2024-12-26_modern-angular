@@ -18,7 +18,7 @@ import {D08Sigform3Component} from './d08-sigform3/d08-sigform3.component';
 })
 export class AppComponent {
   title = 'modern-angular';
-  selection = signal<Demo>('d01-select');
+  selection = signal<Demo>('d08-sigform3');
 
   selectDemo(v: Demo) {
     this.selection.set(v);
