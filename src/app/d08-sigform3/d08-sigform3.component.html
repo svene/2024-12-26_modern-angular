@@ -1,5 +1,6 @@
 <form>
 
+  <!-- Id -->
   <div class="field">
     <label class="label">Id</label>
     <div class="control">
@@ -18,6 +19,7 @@
     }
   </div>
 
+  <!-- From -->
   <div class="field">
     <label class="label">From</label>
     <div class="control">
@@ -37,6 +39,7 @@
     }
   </div>
 
+  <!-- To -->
   <div class="field">
     <label class="label">To</label>
     <div class="control">
@@ -54,6 +57,36 @@
       <app-validation-errors [errors]="flightForm.to().errors()" />
       <p>{{flightForm.to().errors() |json}}</p>
     }
+  </div>
+
+  <!-- Delay -->
+  <div class="field">
+    <label class="label">Delay</label>
+    <div class="control">
+      <input
+        class="input"
+        [ngClass]="{'is-danger': flightForm.delay().errors().length > 0}"
+        [control]="flightForm.delay"
+        type="number"
+        placeholder="Enter delay"
+      >
+    </div>
+    @if(flightForm.delay().errors().length === 0) {
+      <p class="help">Delay in minutes</p>
+    } @else {
+      <app-validation-errors [errors]="flightForm.delay().errors()" />
+      <p>{{flightForm.delay().errors() |json}}</p>
+    }
+  </div>
+
+  <!-- Delayed -->
+  <div class="field">
+    <label class="checkbox">Delayed
+      <input
+        type="checkbox"
+        [control]="flightForm.delayed"
+      >
+    </label>
   </div>
 
 </form>

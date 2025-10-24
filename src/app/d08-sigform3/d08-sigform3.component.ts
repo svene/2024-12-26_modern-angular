@@ -1,6 +1,6 @@
 import {Component, inject, linkedSignal} from '@angular/core';
 import {Flight, FlightDetailStore} from './flight-detail.store';
-import {Control, customError, FieldPath, form, minLength, required, schema, validate} from '@angular/forms/signals';
+import {applyWhenValue, Control, customError, FieldPath, form, min, minLength, required, schema, validate} from '@angular/forms/signals';
 import {JsonPipe, NgClass} from '@angular/common';
 import {ValidationErrorsComponent} from './common/validation-errors.component';
 
@@ -19,6 +19,11 @@ const validateCity = (path: FieldPath<string>, allowed: string[]): void => {
 });
 }
 
+export const delayedFlight = schema<Flight>((path) => {
+  required(path.delay);
+  min(path.delay, 15);
+});
+
 export const formSchema = schema<Flight>((path) => {
   required(path.id);
   required(path.from);
@@ -26,6 +31,7 @@ export const formSchema = schema<Flight>((path) => {
 
   minLength(path.from, 3);
   validateCity(path.from, ['Graz', 'Hamburg', 'Zürich']);
+  applyWhenValue(path, (flight) => flight.delayed, delayedFlight);
 });
 
 @Component({
