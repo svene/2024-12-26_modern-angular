@@ -94,6 +94,50 @@
     </label>
   </div>
 
+  <hr>
+
+  <!-- Aircraft -->
+  @let aircraftForm = flightForm.aircraft;
+  <!-- type -->
+  <div class="field">
+    <label class="label">Type</label>
+    <div class="control">
+      <input
+        class="input"
+        [ngClass]="{'is-danger': aircraftForm.type().errors().length > 0}"
+        [field]="aircraftForm.type"
+        type="number"
+        placeholder="Aircraft Type"
+      >
+    </div>
+    @if(aircraftForm.type().errors().length === 0) {
+      <p class="help">Aircraft Type</p>
+    } @else {
+      <app-validation-errors [errors]="aircraftForm.type().errors()" />
+      <p>{{aircraftForm.type().errors() |json}}</p>
+    }
+  </div>
+
+  <!-- registration -->
+  <div class="field">
+    <label class="label">Registration</label>
+    <div class="control">
+      <input
+        class="input"
+        [ngClass]="{'is-danger': aircraftForm.registration().errors().length > 0}"
+        [field]="aircraftForm.registration"
+        type="number"
+        placeholder="Aircraft Registration"
+      >
+    </div>
+    @if(aircraftForm.registration().errors().length === 0) {
+      <p class="help">Aircraft Registration</p>
+    } @else {
+      <app-validation-errors [errors]="aircraftForm.registration().errors()" />
+      <p>{{aircraftForm.registration().errors() |json}}</p>
+    }
+  </div>
+
 </form>
 
 <hr>
