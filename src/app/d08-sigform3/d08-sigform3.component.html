@@ -1,7 +1,10 @@
+<h1 class="title">Flight Details Form</h1>
 <app-validation-errors [errors]="flightForm().errors()" />
-<div>{{flightForm().errors() | json}}</div>
 <form>
 
+  <!-- Aircraft -->
+  <hr>
+  <h4 class="subtitle is-4">Flight</h4>
   <!-- Id -->
   <div class="field">
     <label class="label">Id</label>
@@ -37,7 +40,6 @@
       <p class="help">Starting airport</p>
     } @else {
       <app-validation-errors [errors]="flightForm.from().errors()" />
-      <p>{{flightForm.from().errors() |json}}</p>
     }
     @if (flightForm.from().pending()) {
       <p>Waiting for Async Validation Result.....</p>
@@ -60,7 +62,6 @@
       <p class="help">Destination airport</p>
     } @else {
       <app-validation-errors [errors]="flightForm.to().errors()" />
-      <p>{{flightForm.to().errors() |json}}</p>
     }
   </div>
 
@@ -80,7 +81,6 @@
       <p class="help">Delay in minutes</p>
     } @else {
       <app-validation-errors [errors]="flightForm.delay().errors()" />
-      <p>{{flightForm.delay().errors() |json}}</p>
     }
   </div>
 
@@ -94,9 +94,9 @@
     </label>
   </div>
 
-  <hr>
-
   <!-- Aircraft -->
+  <hr>
+  <h4 class="subtitle is-4">Aircraft</h4>
   @let aircraftForm = flightForm.aircraft;
   <!-- type -->
   <div class="field">
@@ -114,7 +114,6 @@
       <p class="help">Aircraft Type</p>
     } @else {
       <app-validation-errors [errors]="aircraftForm.type().errors()" />
-      <p>{{aircraftForm.type().errors() |json}}</p>
     }
   </div>
 
@@ -134,7 +133,6 @@
       <p class="help">Aircraft Registration</p>
     } @else {
       <app-validation-errors [errors]="aircraftForm.registration().errors()" />
-      <p>{{aircraftForm.registration().errors() |json}}</p>
     }
   </div>
 

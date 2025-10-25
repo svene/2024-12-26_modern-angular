@@ -1,9 +1,11 @@
 import {Component, computed, input,} from '@angular/core';
 import {MinValidationError, ValidationError} from '@angular/forms/signals';
+import {JsonPipe} from '@angular/common';
 
 @Component({
   selector: 'app-validation-errors',
   imports: [
+    JsonPipe
   ],
   template: `
     @if (errorMessages().length > 0) {
@@ -11,6 +13,7 @@ import {MinValidationError, ValidationError} from '@angular/forms/signals';
         @for (message of errorMessages(); track message) {
           <p class="help is-danger">{{ message }}</p>
         }
+        <div>errors: {{errors() | json}}</div>
       </div>
     }
   `
