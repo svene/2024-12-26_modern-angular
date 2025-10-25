@@ -121,6 +121,26 @@ function validateCityHttp(schema: FieldPath<string>) {
   });
 }
 
+function validateDuplicatePrices(prices: FieldPath<Price[]>) {
+  validate(prices, (ctx) => {
+    const prices = ctx.value();
+    const flightClasses = new Set<string>();
+
+    for (const price of prices) {
+      if (flightClasses.has(price.flightClass)) {
+        return customError({
+          kind: 'duplicateFlightClass',
+          message: 'There can only be one price per flight class',
+          flightClass: price.flightClass,
+        });
+      }
+      flightClasses.add(price.flightClass);
+    }
+
+    return null;
+  });
+}
+
 export const delayedFlight = schema<Flight>((path) => {
   required(path.delay);
   min(path.delay, 15);
@@ -156,6 +176,7 @@ export const formSchema = schema<Flight>((path) => {
 
   apply(path.aircraft, aircraftSchema);
   applyEach(path.prices, priceSchema);
+  validateDuplicatePrices(path.prices);
 
 });
 
