@@ -1,12 +1,5 @@
 import {Injectable, signal} from '@angular/core';
-
-export type Flight = {
-  id: number;
-  from: string;
-  to: string;
-  delay: number;
-  delayed: boolean;
-}
+import {Flight} from './flight-detail.model';
 
 const InitialFlight: Flight = {id: 1, from: 'Basel', to: 'Wien', delay: 0, delayed: false};
 

@@ -1,8 +1,8 @@
 import {applyWhenValue, customError, disabled, Field, FieldPath, form, min, minLength, required, schema, validate, validateAsync, validateHttp, validateTree} from '@angular/forms/signals';
-import {Flight} from './flight-detail.store';
 import {Observable, of} from 'rxjs';
 import {delay, map} from 'rxjs/operators';
 import {rxResource} from '@angular/core/rxjs-interop';
+import {Flight} from './flight-detail.model';
 
 const validateCity = (path: FieldPath<string>, allowed: string[]): void => {
   validate(path, (ctx) => {
