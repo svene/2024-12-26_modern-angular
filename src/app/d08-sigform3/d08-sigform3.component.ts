@@ -1,6 +1,6 @@
 import {Component, inject, linkedSignal} from '@angular/core';
 import {Flight, FlightDetailStore} from './flight-detail.store';
-import {applyWhenValue, Control, customError, FieldPath, form, min, minLength, required, schema, validate} from '@angular/forms/signals';
+import {applyWhenValue, customError, disabled, Field, FieldPath, form, min, minLength, required, schema, validate} from '@angular/forms/signals';
 import {JsonPipe, NgClass} from '@angular/common';
 import {ValidationErrorsComponent} from './common/validation-errors.component';
 
@@ -31,6 +31,7 @@ export const formSchema = schema<Flight>((path) => {
 
   minLength(path.from, 3);
   validateCity(path.from, ['Graz', 'Hamburg', 'Zürich']);
+  disabled(path.delay, (ctx) => !ctx.valueOf(path.delayed));
   applyWhenValue(path, (flight) => flight.delayed, delayedFlight);
 });
 
@@ -39,10 +40,10 @@ export const formSchema = schema<Flight>((path) => {
   templateUrl: './d08-sigform3.component.html',
   styleUrls: ['./d08-sigform3.component.scss'],
   imports: [
-    Control,
     JsonPipe,
     NgClass,
     ValidationErrorsComponent,
+    Field,
   ]
 })
 export class D08Sigform3Component {

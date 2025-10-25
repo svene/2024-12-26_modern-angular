@@ -2,7 +2,7 @@ import {Component, resource, signal} from '@angular/core';
 import {JsonPipe, NgClass} from '@angular/common';
 import {httpResource} from '@angular/common/http';
 import {z as zod} from 'zod';
-import {apply, Control, FieldState, form, required, schema, Schema} from '@angular/forms/signals';
+import {apply, Field, FieldState, form, required, schema, Schema} from '@angular/forms/signals';
 
 export type FormModel = {
   id: string,
@@ -28,7 +28,7 @@ const idSchema: Schema<string> = schema((path) => {
             type="text"
             class="input"
             [ngClass]="!searchForm.id().dirty() ? '' : searchForm.id().errors().length === 0 ? 'is-success' : 'is-danger'"
-            [control]="searchForm.id"
+            [field]="searchForm.id"
             placeholder="Enter id">
           @for (error of searchForm.id().errors(); track $index) {
             <div style="color: red">{{error.message}}</div> <!-- https://www.youtube.com/watch?v=CEAVN_pkCXU  8:50 -->
@@ -61,7 +61,7 @@ const idSchema: Schema<string> = schema((path) => {
 
   `,
   imports: [
-    Control,
+    Field,
     JsonPipe,
     NgClass
   ]
