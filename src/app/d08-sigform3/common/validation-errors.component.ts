@@ -35,9 +35,12 @@ function toMessage(error: ValidationError): string {
   switch (error.kind) {
     case 'required':
       return 'Enter a value!';
+    case 'roundtrip':
+    case 'roundtrip_tree':
+      return 'Roundtrips are not supported!';
     case 'min':
       const minError = error as MinValidationError;
-      return `Enter at least ${minError.min} characters!`;
+      return `Minimum amount: ${minError.min}`;
     default:
       return error.kind ?? 'Validation Error';
   }

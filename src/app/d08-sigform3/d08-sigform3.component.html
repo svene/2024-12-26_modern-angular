@@ -1,3 +1,5 @@
+<app-validation-errors [errors]="flightForm().errors()" />
+<div>{{flightForm().errors() | json}}</div>
 <form>
 
   <!-- Id -->
