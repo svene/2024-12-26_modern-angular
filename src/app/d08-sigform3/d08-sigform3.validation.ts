@@ -1,5 +1,23 @@
-import {applyWhenValue, customError, disabled, Field, FieldPath, form, min, minLength, required, schema, validate, validateTree} from '@angular/forms/signals';
+import {applyWhenValue, customError, disabled, Field, FieldPath, form, min, minLength, required, schema, validate, validateAsync, validateTree} from '@angular/forms/signals';
 import {Flight} from './flight-detail.store';
+import {Observable, of} from 'rxjs';
+import {delay, map} from 'rxjs/operators';
+import {rxResource} from '@angular/core/rxjs-interop';
+
+const validateCity = (path: FieldPath<string>, allowed: string[]): void => {
+  validate(path, (ctx) => {
+    const value = ctx.value();
+    if (allowed.includes(value)) {
+      return null;
+    }
+
+    return customError({
+      kind: 'city',
+      value,
+      allowed,
+    });
+  });
+}
 
 export function validateRoundTripTree(schema: FieldPath<Flight>) {
   validateTree(schema, (ctx) => {
@@ -35,18 +53,35 @@ export function validateRoundTrip(schema: FieldPath<Flight>) {
   });
 }
 
-const validateCity = (path: FieldPath<string>, allowed: string[]): void => {
-  validate(path, (ctx) => {
-    const value = ctx.value();
-    if (allowed.includes(value)) {
+// ----- async  validation -----
+// Simulates a server-side validation
+function rxValidateAirport(airport: string): Observable<boolean> {
+  return of(null).pipe(
+    delay(2000),
+    map(() => airport !== 'Graz')
+  );
+}
+function validateCityAsync(schema: FieldPath<string>) {
+  validateAsync(schema, {
+    params: (ctx) => ({
+      value: ctx.value(),
+    }),
+    factory: (params) => {
+      return rxResource({
+        params,
+        stream: (p) => {
+          return rxValidateAirport(p.params.value);
+        },
+      });
+    },
+    errors: (result, ctx) => {
+      if (!result) {
+        return {
+          kind: 'airport_closed',
+        };
+      }
       return null;
-    }
-
-    return customError({
-      kind: 'city',
-      value,
-      allowed,
-    });
+    },
   });
 }
 
@@ -68,6 +103,8 @@ export const formSchema = schema<Flight>((path) => {
 
   validateRoundTrip(path);
   validateRoundTripTree(path);
+
+  validateCityAsync(path.from);
 
 });
 

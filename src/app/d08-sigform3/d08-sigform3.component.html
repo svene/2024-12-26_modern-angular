@@ -39,6 +39,9 @@
       <app-validation-errors [errors]="flightForm.from().errors()" />
       <p>{{flightForm.from().errors() |json}}</p>
     }
+    @if (flightForm.from().pending()) {
+      <p>Waiting for Async Validation Result.....</p>
+    }
   </div>
 
   <!-- To -->

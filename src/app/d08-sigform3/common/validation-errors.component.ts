@@ -38,6 +38,8 @@ function toMessage(error: ValidationError): string {
     case 'roundtrip':
     case 'roundtrip_tree':
       return 'Roundtrips are not supported!';
+    case 'airport_closed':
+      return 'This airport is closed at the moment!';
     case 'min':
       const minError = error as MinValidationError;
       return `Minimum amount: ${minError.min}`;
