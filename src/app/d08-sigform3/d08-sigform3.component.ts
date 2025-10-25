@@ -1,9 +1,10 @@
 import {Component, inject, linkedSignal} from '@angular/core';
 import {FlightDetailStore} from './flight-detail.store';
 import {Field, form} from '@angular/forms/signals';
-import {JsonPipe, NgClass} from '@angular/common';
+import {NgClass} from '@angular/common';
 import {ValidationErrorsComponent} from './common/validation-errors.component';
 import {formSchema} from './d08-sigform3.validation';
+import {InitialPrice} from './flight-detail.model';
 
 // https://github.com/manfredsteyer/modern/blob/signal-forms-example/src/app/flight-booking/flight-edit/flight-edit.component.ts
 
@@ -12,7 +13,6 @@ import {formSchema} from './d08-sigform3.validation';
   templateUrl: './d08-sigform3.component.html',
   styleUrls: ['./d08-sigform3.component.scss'],
   imports: [
-    JsonPipe,
     NgClass,
     ValidationErrorsComponent,
     Field,
@@ -26,4 +26,6 @@ export class D08Sigform3Component {
 
   flightForm = form(this.flight, formSchema);
 
-}
+  addPrice(): void {
+    this.flightForm.prices().value.update((prices) => [...prices, { ...InitialPrice }]);
+  }}

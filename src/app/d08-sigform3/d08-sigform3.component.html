@@ -1,8 +1,9 @@
 <h1 class="title">Flight Details Form</h1>
 <app-validation-errors [errors]="flightForm().errors()" />
+
 <form>
 
-  <!-- Aircraft -->
+  <!-- Flight -->
   <hr>
   <h4 class="subtitle is-4">Flight</h4>
   <!-- Id -->
@@ -95,9 +96,9 @@
   </div>
 
   <!-- Aircraft -->
+  @let aircraftForm = flightForm.aircraft;
   <hr>
   <h4 class="subtitle is-4">Aircraft</h4>
-  @let aircraftForm = flightForm.aircraft;
   <!-- type -->
   <div class="field">
     <label class="label">Type</label>
@@ -135,6 +136,41 @@
       <app-validation-errors [errors]="aircraftForm.registration().errors()" />
     }
   </div>
+
+  <!-- Prices -->
+  @let pricesForm = flightForm.prices;
+  <hr>
+  <h4 class="subtitle is-4">Prices</h4>
+  <app-validation-errors [errors]="pricesForm().errors()"/>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Flight Class</th>
+        <th>Amount</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(price of pricesForm; track price) {
+        <tr>
+          <td><input [field]="price.flightClass" /></td>
+          <td><input [field]="price.amount" /></td>
+          <td>
+            <app-validation-errors [errors]="price().errorSummary()"/>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <button
+    class="button"
+    (click)="addPrice()"
+    type="button">
+    Add
+  </button>
+
 
 </form>
 

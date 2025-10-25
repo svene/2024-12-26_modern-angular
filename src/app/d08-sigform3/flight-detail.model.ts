@@ -8,6 +8,8 @@ export type Price = {
   amount: number;
 }
 
+export const InitialPrice: Price = {flightClass: '', amount: 0};
+
 export type Flight = {
   id: number;
   from: string;
