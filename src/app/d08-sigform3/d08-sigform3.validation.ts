@@ -1,4 +1,4 @@
-import {applyWhenValue, customError, disabled, Field, FieldPath, form, min, minLength, required, schema, validate, validateAsync, validateTree} from '@angular/forms/signals';
+import {applyWhenValue, customError, disabled, Field, FieldPath, form, min, minLength, required, schema, validate, validateAsync, validateHttp, validateTree} from '@angular/forms/signals';
 import {Flight} from './flight-detail.store';
 import {Observable, of} from 'rxjs';
 import {delay, map} from 'rxjs/operators';
@@ -85,6 +85,25 @@ function validateCityAsync(schema: FieldPath<string>) {
   });
 }
 
+function validateCityHttp(schema: FieldPath<string>) {
+  validateHttp(schema, {
+    request: (ctx) => ({
+      url: 'https://demo.angulararchitects.io/api/flight',
+      params: {
+        from: ctx.value(),
+      },
+    }),
+    errors: (result: Flight[], ctx) => {
+      if (result.length === 0) {
+        return {
+          kind: 'airport_not_found_http',
+        };
+      }
+      return null;
+    },
+  });
+}
+
 export const delayedFlight = schema<Flight>((path) => {
   required(path.delay);
   min(path.delay, 15);
@@ -105,6 +124,7 @@ export const formSchema = schema<Flight>((path) => {
   validateRoundTripTree(path);
 
   validateCityAsync(path.from);
+  validateCityHttp(path.from);
 
 });
 
