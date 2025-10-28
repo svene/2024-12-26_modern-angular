@@ -6,6 +6,7 @@ import {ValidationErrorsComponent} from './common/validation-errors.component';
 import {formSchema} from './d08-sigform3.validation';
 import {InitialPrice} from './flight-detail.model';
 import {FlightComponent} from './flight/flight.component';
+import {AircraftComponent} from './aircraft/aircraft.component';
 
 // https://github.com/manfredsteyer/modern/blob/signal-forms-example/src/app/flight-booking/flight-edit/flight-edit.component.ts
 
@@ -14,10 +15,10 @@ import {FlightComponent} from './flight/flight.component';
   templateUrl: './d08-sigform3.component.html',
   styleUrls: ['./d08-sigform3.component.scss'],
   imports: [
-    NgClass,
     ValidationErrorsComponent,
     Field,
     FlightComponent,
+    AircraftComponent,
   ]
 })
 export class D08Sigform3Component {

@@ -5,14 +5,14 @@ import {Field, FieldTree} from '@angular/forms/signals';
 import {Aircraft, Flight} from '../flight-detail.model';
 
 @Component({
-  selector: 'app-flight',
-  templateUrl: './flight.component.html',
+  selector: 'app-aircraft',
+  templateUrl: './aircraft.component.html',
   imports: [
     ValidationErrorsComponent,
     NgClass,
     Field
   ]
 })
-export class FlightComponent {
-  flightForm = input.required<FieldTree<Flight>>();
+export class AircraftComponent {
+  aircraftForm = input.required<FieldTree<Aircraft>>();
 }
