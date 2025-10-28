@@ -5,6 +5,7 @@ import {NgClass} from '@angular/common';
 import {ValidationErrorsComponent} from './common/validation-errors.component';
 import {formSchema} from './d08-sigform3.validation';
 import {InitialPrice} from './flight-detail.model';
+import {FlightComponent} from './flight/flight.component';
 
 // https://github.com/manfredsteyer/modern/blob/signal-forms-example/src/app/flight-booking/flight-edit/flight-edit.component.ts
 
@@ -16,6 +17,7 @@ import {InitialPrice} from './flight-detail.model';
     NgClass,
     ValidationErrorsComponent,
     Field,
+    FlightComponent,
   ]
 })
 export class D08Sigform3Component {

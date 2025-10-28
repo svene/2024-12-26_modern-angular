@@ -3,97 +3,7 @@
 
 <form>
 
-  <!-- Flight -->
-  <hr>
-  <h4 class="subtitle is-4">Flight</h4>
-  <!-- Id -->
-  <div class="field">
-    <label class="label">Id</label>
-    <div class="control">
-      <input
-        class="input"
-        [ngClass]="{'is-danger': flightForm.id().errors().length > 0}"
-        [field]="flightForm.id"
-        type="text"
-        placeholder="Enter id"
-      >
-    </div>
-    @if(flightForm.id().errors().length === 0) {
-      <p class="help">The ID of the flight</p>
-    } @else {
-      <app-validation-errors [errors]="flightForm.id().errors()" />
-    }
-  </div>
-
-  <!-- From -->
-  <div class="field">
-    <label class="label">From</label>
-    <div class="control">
-      <input
-        class="input"
-        [ngClass]="{'is-danger': flightForm.from().errors().length > 0}"
-        [field]="flightForm.from"
-        type="text"
-        placeholder="Enter airport"
-      >
-    </div>
-    @if(flightForm.from().errors().length === 0) {
-      <p class="help">Starting airport</p>
-    } @else {
-      <app-validation-errors [errors]="flightForm.from().errors()" />
-    }
-    @if (flightForm.from().pending()) {
-      <p>Waiting for Async Validation Result.....</p>
-    }
-  </div>
-
-  <!-- To -->
-  <div class="field">
-    <label class="label">To</label>
-    <div class="control">
-      <input
-        class="input"
-        [ngClass]="{'is-danger': flightForm.to().errors().length > 0}"
-        [field]="flightForm.to"
-        type="text"
-        placeholder="Enter airport"
-      >
-    </div>
-    @if(flightForm.to().errors().length === 0) {
-      <p class="help">Destination airport</p>
-    } @else {
-      <app-validation-errors [errors]="flightForm.to().errors()" />
-    }
-  </div>
-
-  <!-- Delay -->
-  <div class="field">
-    <label class="label">Delay</label>
-    <div class="control">
-      <input
-        class="input"
-        [ngClass]="{'is-danger': flightForm.delay().errors().length > 0}"
-        [field]="flightForm.delay"
-        type="number"
-        placeholder="Enter delay"
-      >
-    </div>
-    @if(flightForm.delay().errors().length === 0) {
-      <p class="help">Delay in minutes</p>
-    } @else {
-      <app-validation-errors [errors]="flightForm.delay().errors()" />
-    }
-  </div>
-
-  <!-- Delayed -->
-  <div class="field">
-    <label class="checkbox">Delayed
-      <input
-        type="checkbox"
-        [field]="flightForm.delayed"
-      >
-    </label>
-  </div>
+  <app-flight [flightForm]="flightForm" [aircraft]="flightForm.aircraft"></app-flight>
 
   <!-- Aircraft -->
   @let aircraftForm = flightForm.aircraft;
@@ -152,7 +62,7 @@
       </tr>
     </thead>
     <tbody>
-      @for(price of pricesForm; track price) {
+      @for(price of flightForm.prices; track price) {
         <tr>
           <td><input [field]="price.flightClass" /></td>
           <td><input [field]="price.amount" /></td>
