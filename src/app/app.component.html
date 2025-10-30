@@ -36,6 +36,7 @@
       <ul class="menu-list">
         <li (click)="selectDemo('d09s01-sigform')"><a [ngClass]="{'is-active': selection() === 'd09s01-sigform'}">Step 1</a></li>
         <li (click)="selectDemo('d09s02-sigform')"><a [ngClass]="{'is-active': selection() === 'd09s02-sigform'}">Step 2</a></li>
+        <li (click)="selectDemo('d09s03-sigform')"><a [ngClass]="{'is-active': selection() === 'd09s03-sigform'}">Step 3</a></li>
       </ul>
     </aside>
     </div>
@@ -71,6 +72,9 @@
       }
       @case ('d09s02-sigform') {
         <app-d09s02-sigform></app-d09s02-sigform>
+      }
+      @case ('d09s03-sigform') {
+        <app-d09s03-sigform></app-d09s03-sigform>
       }
     }
   </div>
