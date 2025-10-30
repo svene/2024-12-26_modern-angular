@@ -33,7 +33,7 @@ import {D09s02SigformComponent} from './d09_signalforms/step02_validator-functio
 })
 export class AppComponent {
   title = 'modern-angular';
-  selection = signal<Demo>('d09s01-sigform');
+  selection = signal<Demo>('d09s02-sigform');
 
   selectDemo(v: Demo) {
     this.selection.set(v);
