@@ -32,6 +32,10 @@
         <li (click)="selectDemo('d07-sigform2')"><a [ngClass]="{'is-active': selection() === 'd07-sigform2'}">Multifield Validation</a></li>
         <li (click)="selectDemo('d08-sigform3')"><a [ngClass]="{'is-active': selection() === 'd08-sigform3'}">Flight Booking</a></li>
       </ul>
+      <p class="menu-label">Signal Forms: Flight</p>
+      <ul class="menu-list">
+        <li (click)="selectDemo('d09s01-sigform')"><a [ngClass]="{'is-active': selection() === 'd09s01-sigform'}">Step 1</a></li>
+      </ul>
     </aside>
     </div>
 
@@ -60,6 +64,9 @@
       }
       @case ('d08-sigform3') {
         <app-d08-sigform3></app-d08-sigform3>
+      }
+      @case ('d09s01-sigform') {
+        <app-d09s01-sigform></app-d09s01-sigform>
       }
     }
   </div>
