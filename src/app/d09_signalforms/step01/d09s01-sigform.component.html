@@ -4,9 +4,10 @@
     <label class="label">Id</label>
     <div class="control">
       <input
+        class="input"
+        [ngClass]="{'is-danger': flightForm.id().errors().length > 0}"
         [field]="flightForm.id"
         type="text"
-        class="input"
         placeholder="Enter id"
       >
     </div>
@@ -21,9 +22,10 @@
     <label class="label">From</label>
     <div class="control">
       <input
+        class="input"
+        [ngClass]="{'is-danger': flightForm.from().errors().length > 0}"
         [field]="flightForm.from"
         type="text"
-        class="input"
         placeholder="Enter airport"
       >
     </div>
@@ -38,9 +40,10 @@
     <label class="label">To</label>
     <div class="control">
       <input
+        class="input"
+        [ngClass]="{'is-danger': flightForm.to().errors().length > 0}"
         [field]="flightForm.to"
         type="text"
-        class="input"
         placeholder="Enter airport"
       >
     </div>
