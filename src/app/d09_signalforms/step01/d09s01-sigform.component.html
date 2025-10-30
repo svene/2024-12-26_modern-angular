@@ -4,51 +4,44 @@
     <label class="label">Id</label>
     <div class="control">
       <input
-        class="input"
         [field]="flightForm.id"
         type="text"
+        class="input"
         placeholder="Enter id"
       >
     </div>
-    @if(flightForm.id().errors().length === 0) {
-      <p class="help">The ID of the flight</p>
-    } @else {
-      <p class="help is-danger">{{ flightForm.id().errors()[0].message }}</p>
-    }
+    <p class="help">The ID of the flight</p>
+    <pre>{{ flightForm.id().errors() | json }}</pre>
   </div>
 
   <div class="field">
     <label class="label">From</label>
     <div class="control">
       <input
-        class="input"
         [field]="flightForm.from"
         type="text"
+        class="input"
         placeholder="Enter airport"
       >
     </div>
-    @if(flightForm.from().errors().length === 0) {
-      <p class="help">Starting airport</p>
-    } @else {
-      <p>{{flightForm.from().errors() |json}}</p>
-    }
+    <p class="help">Starting airport</p>
+    <!-- Field level errors -->
+    <pre>{{ flightForm.from().errors() | json }}</pre>
   </div>
 
   <div class="field">
     <label class="label">To</label>
     <div class="control">
       <input
-        class="input"
         [field]="flightForm.to"
         type="text"
+        class="input"
         placeholder="Enter airport"
       >
     </div>
-    @if(flightForm.to().errors().length === 0) {
-      <p class="help">Destination airport</p>
-    } @else {
-      <p>{{flightForm.to().errors() |json}}</p>
-    }
+    <p class="help">Destination airport</p>
+    <!-- Field level errors -->
+    <pre>{{ flightForm.to().errors() | json }}</pre>
   </div>
 
 
