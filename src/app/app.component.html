@@ -38,6 +38,7 @@
         <li (click)="selectDemo('d09s02-sigform')"><a [ngClass]="{'is-active': selection() === 'd09s02-sigform'}">Step 2</a></li>
         <li (click)="selectDemo('d09s03-sigform')"><a [ngClass]="{'is-active': selection() === 'd09s03-sigform'}">Step 3</a></li>
         <li (click)="selectDemo('d09s04-sigform')"><a [ngClass]="{'is-active': selection() === 'd09s04-sigform'}">Step 4</a></li>
+        <li (click)="selectDemo('d09s05-sigform')"><a [ngClass]="{'is-active': selection() === 'd09s05-sigform'}">Step 5</a></li>
       </ul>
     </aside>
     </div>
@@ -79,6 +80,9 @@
       }
       @case ('d09s04-sigform') {
         <app-d09s04-sigform></app-d09s04-sigform>
+      }
+      @case ('d09s05-sigform') {
+        <app-d09s05-sigform></app-d09s05-sigform>
       }
     }
   </div>

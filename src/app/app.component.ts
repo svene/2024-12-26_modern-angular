@@ -13,6 +13,7 @@ import {D09s01SigformComponent} from './d09_signalforms/step01/d09s01-sigform.co
 import {D09s02SigformComponent} from './d09_signalforms/step02_validator-functions/d09s02-sigform.component';
 import {D09s03SigformComponent} from './d09_signalforms/step03_show-validation-errors/d09s03-sigform.component';
 import {D09s04SigformComponent} from './d09_signalforms/step04_using-separate-schemas/d09s04-sigform.component';
+import {D09s05SigformComponent} from './d09_signalforms/step05_conditional-validation/d09s05-sigform.component';
 
 @Component({
   selector: 'app-root',
@@ -31,13 +32,14 @@ import {D09s04SigformComponent} from './d09_signalforms/step04_using-separate-sc
     D09s02SigformComponent,
     D09s03SigformComponent,
     D09s04SigformComponent,
+    D09s05SigformComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'modern-angular';
-  selection = signal<Demo>('d09s04-sigform');
+  selection = signal<Demo>('d09s05-sigform');
 
   selectDemo(v: Demo) {
     this.selection.set(v);
@@ -57,4 +59,5 @@ export type Demo =
   | 'd09s02-sigform'
   | 'd09s03-sigform'
   | 'd09s04-sigform'
+  | 'd09s05-sigform'
   ;
