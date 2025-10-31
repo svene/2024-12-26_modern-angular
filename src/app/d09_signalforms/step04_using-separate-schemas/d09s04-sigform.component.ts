@@ -5,15 +5,15 @@ import {JsonPipe, NgClass} from '@angular/common';
 import {ValidationErrorsComponent} from './common/validation-errors.component';
 
 @Component({
-  selector: 'app-d09s03-sigform',
-  templateUrl: 'd09s03-sigform.component.html',
+  selector: 'app-d09s04-sigform',
+  templateUrl: 'd09s04-sigform.component.html',
   imports: [
     Field,
     NgClass,
     ValidationErrorsComponent
   ]
 })
-export class D09s03SigformComponent {
+export class D09s04SigformComponent {
 
   private store = inject(FlightDetailStore);
 
