@@ -79,7 +79,7 @@ function validateCityAsync(schema: FieldPath<string>) {
         },
       });
     },
-    errors: (result, ctx) => {
+    onSuccess: (result, ctx) => {
       if (!result) {
         return {
           kind: 'airport_closed',
@@ -87,6 +87,7 @@ function validateCityAsync(schema: FieldPath<string>) {
       }
       return null;
     },
+    onError: (error: unknown, ctx) => { return null;}
   });
 }
 
@@ -98,7 +99,7 @@ function validateCityHttp(schema: FieldPath<string>) {
         from: ctx.value(),
       },
     }),
-    errors: (result: Flight[], ctx) => {
+    onSuccess: (result: Flight[], ctx) => {
       if (result.length === 0) {
         return {
           kind: 'airport_not_found_http',
@@ -106,6 +107,7 @@ function validateCityHttp(schema: FieldPath<string>) {
       }
       return null;
     },
+    onError: (error: unknown, ctx) => { return null;}
   });
 }
 

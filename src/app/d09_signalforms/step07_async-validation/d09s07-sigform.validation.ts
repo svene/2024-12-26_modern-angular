@@ -79,7 +79,7 @@ function validateCityAsync(schema: FieldPath<string>) {
         },
       });
     },
-    errors: (result, ctx) => {
+    onSuccess: (result, ctx) => {
       if (!result) {
         return {
           kind: 'airport_closed',
@@ -87,6 +87,7 @@ function validateCityAsync(schema: FieldPath<string>) {
       }
       return null;
     },
+    onError: (error: unknown, ctx) => { return null;}
   });
 }
 
