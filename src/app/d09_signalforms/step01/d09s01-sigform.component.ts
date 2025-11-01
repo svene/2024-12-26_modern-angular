@@ -1,26 +1,14 @@
-import {Component, inject, linkedSignal} from '@angular/core';
-import {FlightDetailStore} from './flight-detail.store';
-import {Field, form, required} from '@angular/forms/signals';
-import {JsonPipe} from '@angular/common';
+import {Component} from '@angular/core';
+import {SigformComponent} from './sigform.component';
 
 @Component({
   selector: 'app-d09s01-sigform',
-  templateUrl: 'd09s01-sigform.component.html',
+  template: `
+    <app-sigform></app-sigform>
+  `,
   imports: [
-    Field,
-    JsonPipe
+    SigformComponent
   ]
 })
 export class D09s01SigformComponent {
-
-  private store = inject(FlightDetailStore);
-
-  flight = linkedSignal(() => this.store.flight());
-
-  flightForm = form(this.flight, (path) => {
-    required(path.id)
-    required(path.from)
-    required(path.to)
-  });
-
 }

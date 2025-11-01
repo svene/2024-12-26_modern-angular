@@ -1,7 +1,7 @@
 import {Component, inject, linkedSignal} from '@angular/core';
 import {FlightDetailStore} from './flight-detail.store';
 import {customError, Field, FieldPath, form, minLength, required, validate} from '@angular/forms/signals';
-import {JsonPipe, NgClass} from '@angular/common';
+import {NgClass} from '@angular/common';
 import {ValidationErrorsComponent} from './common/validation-errors.component';
 
 @Component({
