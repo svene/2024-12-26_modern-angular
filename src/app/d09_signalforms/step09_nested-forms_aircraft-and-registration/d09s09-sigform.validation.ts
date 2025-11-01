@@ -1,8 +1,8 @@
-import {Flight} from './flight-detail.store';
-import {applyWhenValue, customError, disabled, FieldPath, min, minLength, required, schema, validate, validateAsync, validateHttp, validateTree} from '@angular/forms/signals';
+import {apply, applyWhenValue, customError, disabled, FieldPath, min, minLength, required, schema, validate, validateAsync, validateHttp, validateTree} from '@angular/forms/signals';
 import {Observable, of} from 'rxjs';
 import {delay, map} from 'rxjs/operators';
 import {rxResource} from '@angular/core/rxjs-interop';
+import {Aircraft, Flight} from './flight-detail.model';
 
 export const validateCity = (path: FieldPath<string>, allowed: string[]): void => {
   validate(path, (ctx) => {
@@ -109,7 +109,10 @@ function validateCityHttp(schema: FieldPath<string>) {
   });
 }
 
-
+export const aircraftSchema = schema<Aircraft>((path) => {
+  required(path.registration);
+  required(path.type);
+});
 
 export const flightSchema = schema<Flight>((path) => {
   required(path.id, { message: 'Please enter a value!' });
@@ -129,5 +132,7 @@ export const flightSchema = schema<Flight>((path) => {
 
   validateCityAsync(path.from);
   validateCityHttp(path.from);
+
+  apply(path.aircraft, aircraftSchema);
 
 });
