@@ -3,7 +3,7 @@ import {MinValidationError, ValidationError} from '@angular/forms/signals';
 import {JsonPipe} from '@angular/common';
 
 @Component({
-  selector: 'app-d09s04-validation-errors',
+  selector: 'app-validation-errors',
   imports: [
     JsonPipe
   ],
@@ -18,7 +18,7 @@ import {JsonPipe} from '@angular/common';
     }
   `
 })
-export class D09S04ValidationErrorsComponent {
+export class ValidationErrorsComponent {
   errors = input.required<ValidationError[]>();
 
   errorMessages = computed(() =>

@@ -2,8 +2,8 @@ import {Component, inject, linkedSignal} from '@angular/core';
 import {FlightDetailStore} from './flight-detail.store';
 import {Field, form} from '@angular/forms/signals';
 import {NgClass} from '@angular/common';
-import {flightSchema} from './d09s08-sigform.validation';
-import {D09s08ValidationErrorsComponent} from './common/d09s08-validation-errors.component';
+import {flightSchema} from './sigform.validation';
+import {ValidationErrorsComponent} from './common/validation-errors.component';
 
 @Component({
   selector: 'app-d09s08-sigform',
@@ -11,8 +11,7 @@ import {D09s08ValidationErrorsComponent} from './common/d09s08-validation-errors
   imports: [
     Field,
     NgClass,
-    D09s08ValidationErrorsComponent,
-    D09s08ValidationErrorsComponent,
+    ValidationErrorsComponent,
   ]
 })
 export class D09s08SigformComponent {
