@@ -1,5 +1,5 @@
 import {Flight} from './flight-detail.store';
-import {applyWhenValue, customError, disabled, FieldPath, min, minLength, required, schema, validate, validateAsync, validateTree} from '@angular/forms/signals';
+import {applyWhenValue, customError, disabled, FieldPath, min, minLength, required, schema, validate, validateAsync, validateHttp, validateTree} from '@angular/forms/signals';
 import {Observable, of} from 'rxjs';
 import {delay, map} from 'rxjs/operators';
 import {rxResource} from '@angular/core/rxjs-interop';
@@ -90,6 +90,27 @@ function validateCityAsync(schema: FieldPath<string>) {
   });
 }
 
+function validateCityHttp(schema: FieldPath<string>) {
+  validateHttp(schema, {
+    request: (ctx) => ({
+      url: 'https://demo.angulararchitects.io/api/flight',
+      params: {
+        from: ctx.value(),
+      },
+    }),
+    errors: (result: Flight[], ctx) => {
+      if (result.length === 0) {
+        return {
+          kind: 'airport_not_found_http',
+        };
+      }
+      return null;
+    },
+  });
+}
+
+
+
 export const flightSchema = schema<Flight>((path) => {
   required(path.id, { message: 'Please enter a value!' });
   required(path.from, { message: 'Please enter a value!' });
@@ -107,4 +128,6 @@ export const flightSchema = schema<Flight>((path) => {
   validateRoundTripTree(path);
 
   validateCityAsync(path.from);
+  validateCityHttp(path.from);
+
 });
