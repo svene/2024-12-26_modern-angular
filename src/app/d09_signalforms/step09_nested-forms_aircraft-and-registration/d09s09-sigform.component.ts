@@ -1,24 +1,14 @@
-import {Component, inject, linkedSignal} from '@angular/core';
-import {FlightDetailStore} from './flight-detail.store';
-import {Field, form} from '@angular/forms/signals';
-import {NgClass} from '@angular/common';
-import {flightSchema} from './sigform.validation';
-import {ValidationErrorsComponent} from './common/validation-errors.component';
+import {Component} from '@angular/core';
+import {SigformComponent} from './sigform.component';
 
 @Component({
   selector: 'app-d09s09-sigform',
-  templateUrl: 'd09s09-sigform.component.html',
+  template: `
+    <app-sigform></app-sigform>
+  `,
   imports: [
-    Field,
-    NgClass,
-    ValidationErrorsComponent,
+    SigformComponent
   ]
 })
 export class D09s09SigformComponent {
-
-  private store = inject(FlightDetailStore);
-
-  flight = linkedSignal(() => this.store.flight());
-
-  flightForm = form(this.flight, flightSchema);
 }
