@@ -17,6 +17,7 @@ import {D09s05SigformComponent} from './d09_signalforms/step05_conditional-valid
 import {D09s06SigformComponent} from './d09_signalforms/step06_multifield-validation/d09s06-sigform.component';
 import {D09s07SigformComponent} from './d09_signalforms/step07_async-validation/d09s07-sigform.component';
 import {D09s08SigformComponent} from './d09_signalforms/step08_async-validation/d09s08-sigform.component';
+import {D09s09SigformComponent} from './d09_signalforms/step09_nested-forms_aircraft-and-registration/d09s09-sigform.component';
 
 @Component({
   selector: 'app-root',
@@ -39,13 +40,14 @@ import {D09s08SigformComponent} from './d09_signalforms/step08_async-validation/
     D09s06SigformComponent,
     D09s07SigformComponent,
     D09s08SigformComponent,
+    D09s09SigformComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'modern-angular';
-  selection = signal<Demo>('d09s08-sigform');
+  selection = signal<Demo>('d09s09-sigform');
 
   selectDemo(v: Demo) {
     this.selection.set(v);
@@ -69,4 +71,5 @@ export type Demo =
   | 'd09s06-sigform'
   | 'd09s07-sigform'
   | 'd09s08-sigform'
+  | 'd09s09-sigform'
   ;
