@@ -12,6 +12,7 @@ import {ValidationErrorsComponent} from './common/validation-errors.component';
     Field,
     NgClass,
     ValidationErrorsComponent,
+    ValidationErrorsComponent,
   ]
 })
 export class SigformComponent {

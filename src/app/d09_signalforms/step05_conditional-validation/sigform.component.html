@@ -12,7 +12,10 @@
         placeholder="Enter id"
       >
     </div>
-    <app-validation-errors [errors]="flightForm.id().errors()"></app-validation-errors>
+    <app-validation-errors
+      [errors]="flightForm.id().errors()"
+      [helpText]="'The ID of the flight'"
+    ></app-validation-errors>
   </div>
 
   <!-- From -->
@@ -27,7 +30,10 @@
         placeholder="Enter airport"
       >
     </div>
-    <app-validation-errors [errors]="flightForm.from().errors()"></app-validation-errors>
+    <app-validation-errors
+      [errors]="flightForm.from().errors()"
+      [helpText]="'Starting airport'"
+    ></app-validation-errors>
   </div>
 
   <!-- To -->
@@ -42,7 +48,10 @@
         placeholder="Enter airport"
       >
     </div>
-    <app-validation-errors [errors]="flightForm.to().errors()"></app-validation-errors>
+    <app-validation-errors
+      [errors]="flightForm.to().errors()"
+      [helpText]="'Destination airport'"
+    ></app-validation-errors>
   </div>
 
   <!-- Delay -->
@@ -57,12 +66,10 @@
         placeholder="Enter delay"
       >
     </div>
-    <app-validation-errors [errors]="flightForm.to().errors()"></app-validation-errors>
-    @if(flightForm.delay().errors().length === 0) {
-      <p class="help">Delay in minutes</p>
-    } @else {
-      <app-validation-errors [errors]="flightForm.delay().errors()"></app-validation-errors>
-    }
+    <app-validation-errors
+      [errors]="flightForm.delay().errors()"
+      [helpText]="'Delay in minutes'"
+    ></app-validation-errors>
   </div>
 
   <!-- Delayed -->

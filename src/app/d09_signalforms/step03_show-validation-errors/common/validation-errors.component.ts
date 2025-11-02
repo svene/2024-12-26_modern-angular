@@ -3,7 +3,7 @@ import {MinValidationError, ValidationError} from '@angular/forms/signals';
 import {JsonPipe} from '@angular/common';
 
 @Component({
-  selector: 'app-d09s03-validation-errors',
+  selector: 'app-validation-errors',
   imports: [
     JsonPipe
   ],
@@ -15,11 +15,16 @@ import {JsonPipe} from '@angular/common';
         }
         <div>errors: {{errors() | json}}</div>
       </div>
+    } @else {
+      @if(helpText()) {
+      <p class="help">{{ helpText() }}</p>
+    }
     }
   `
 })
 export class ValidationErrorsComponent {
   errors = input.required<ValidationError[]>();
+  helpText = input.required<string>();
 
   errorMessages = computed(() =>
     toErrorMessages(this.errors())

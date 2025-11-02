@@ -15,11 +15,16 @@ import {JsonPipe} from '@angular/common';
         }
         <div>errors: {{errors() | json}}</div>
       </div>
+    } @else {
+      @if(helpText()) {
+      <p class="help">{{ helpText() }}</p>
+    }
     }
   `
 })
 export class ValidationErrorsComponent {
   errors = input.required<ValidationError[]>();
+  helpText = input<string>();
 
   errorMessages = computed(() =>
     toErrorMessages(this.errors())

@@ -1,5 +1,6 @@
 <form>
 
+  <!-- Id -->
   <div class="field">
     <label class="label">Id</label>
     <div class="control">
@@ -11,9 +12,13 @@
         placeholder="Enter id"
       >
     </div>
-    <app-validation-errors [errors]="flightForm.id().errors()"></app-validation-errors>
+    <app-validation-errors
+      [errors]="flightForm.id().errors()"
+      [helpText]="'The ID of the flight'"
+    ></app-validation-errors>
   </div>
 
+  <!-- From -->
   <div class="field">
     <label class="label">From</label>
     <div class="control">
@@ -25,9 +30,13 @@
         placeholder="Enter airport"
       >
     </div>
-    <app-validation-errors [errors]="flightForm.from().errors()"></app-validation-errors>
+    <app-validation-errors
+      [errors]="flightForm.from().errors()"
+      [helpText]="'Starting airport'"
+    ></app-validation-errors>
   </div>
 
+  <!-- To -->
   <div class="field">
     <label class="label">To</label>
     <div class="control">
@@ -39,7 +48,10 @@
         placeholder="Enter airport"
       >
     </div>
-    <app-validation-errors [errors]="flightForm.to().errors()"></app-validation-errors>
+    <app-validation-errors
+      [errors]="flightForm.to().errors()"
+      [helpText]="'Destination airport'"
+    ></app-validation-errors>
   </div>
 
 
