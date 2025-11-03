@@ -1,0 +1,39 @@
+<!-- Aircraft -->
+<hr>
+<h4 class="subtitle is-4">Aircraft</h4>
+
+<!-- type -->
+<div class="field">
+  <label class="label">Type</label>
+  <div class="control">
+    <input
+      class="input"
+      [ngClass]="{'is-danger': aircraftForm().type().errors().length > 0}"
+      [field]="aircraftForm().type"
+      type="number"
+      placeholder="Aircraft Type"
+    >
+  </div>
+  <app-validation-errors
+    [errors]="aircraftForm().type().errors()"
+    [helpText]="'Aircraft Type'"
+  ></app-validation-errors>
+</div>
+
+<!-- registration -->
+<div class="field">
+  <label class="label">Registration</label>
+  <div class="control">
+    <input
+      class="input"
+      [ngClass]="{'is-danger': aircraftForm().registration().errors().length > 0}"
+      [field]="aircraftForm().registration"
+      type="number"
+      placeholder="Aircraft Registration"
+    >
+  </div>
+  <app-validation-errors
+    [errors]="aircraftForm().registration().errors()"
+    [helpText]="'Aircraft Registration'"
+  ></app-validation-errors>
+</div>

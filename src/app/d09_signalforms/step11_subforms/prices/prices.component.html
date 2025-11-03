@@ -1,0 +1,41 @@
+<!-- Prices -->
+<hr>
+<h4 class="subtitle is-4">Prices</h4>
+<app-validation-errors [errors]="flightForm().prices().errors()"></app-validation-errors>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Flight Class</th>
+    <th>Amount</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    @for(price of flightForm().prices; track price) {
+      <tr>
+        <td>
+          <input
+            class="input"
+            [field]="price.flightClass"
+          /></td>
+        <td>
+          <input
+            class="input"
+            [field]="price.amount"
+          /></td>
+        <td>
+          <app-validation-errors [errors]="price().errorSummary()"></app-validation-errors>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<button
+  class="button"
+  (click)="addPrice()"
+  type="button">
+  Add
+</button>
+

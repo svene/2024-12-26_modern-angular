@@ -1,19 +1,22 @@
 import {Component, inject, linkedSignal} from '@angular/core';
 import {FlightDetailStore} from './flight-detail.store';
 import {Field, form} from '@angular/forms/signals';
-import {NgClass} from '@angular/common';
 import {flightSchema} from './sigform.validation';
 import {ValidationErrorsComponent} from './common/validation-errors.component';
 import {InitialPrice} from './flight-detail.model';
+import {FlightComponent} from './flight/flight.component';
+import {AircraftComponent} from './aircraft/aircraft.component';
+import {PricesComponent} from './prices/prices.component';
 
 @Component({
   selector: 'app-sigform',
   templateUrl: 'sigform.component.html',
   imports: [
-    Field,
-    NgClass,
     ValidationErrorsComponent,
     ValidationErrorsComponent,
+    FlightComponent,
+    AircraftComponent,
+    PricesComponent,
   ]
 })
 export class SigformComponent {
