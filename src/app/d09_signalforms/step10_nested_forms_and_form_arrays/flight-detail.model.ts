@@ -17,3 +17,5 @@ export type Flight = {
   aircraft: Aircraft;
   prices: Price[];
 }
+
+export const InitialPrice: Price = {flightClass: '', amount: 0};
