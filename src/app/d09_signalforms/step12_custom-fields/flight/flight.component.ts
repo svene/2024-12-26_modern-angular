@@ -3,6 +3,7 @@ import {ValidationErrorsComponent} from '../common/validation-errors.component';
 import {NgClass} from '@angular/common';
 import {Field, FieldTree} from '@angular/forms/signals';
 import {Flight} from '../flight-detail.model';
+import {DelayStepperComponent} from '../delay-stepper.component';
 
 @Component({
   selector: 'app-flight',
@@ -10,7 +11,8 @@ import {Flight} from '../flight-detail.model';
   imports: [
     ValidationErrorsComponent,
     NgClass,
-    Field
+    Field,
+    DelayStepperComponent
   ]
 })
 export class FlightComponent {
