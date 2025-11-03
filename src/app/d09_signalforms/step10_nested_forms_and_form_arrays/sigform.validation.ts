@@ -1,8 +1,8 @@
-import {apply, applyWhenValue, customError, disabled, FieldPath, min, minLength, required, schema, validate, validateAsync, validateHttp, validateTree} from '@angular/forms/signals';
+import {apply, applyEach, applyWhenValue, customError, disabled, FieldPath, min, minLength, required, schema, validate, validateAsync, validateHttp, validateTree} from '@angular/forms/signals';
 import {Observable, of} from 'rxjs';
 import {delay, map} from 'rxjs/operators';
 import {rxResource} from '@angular/core/rxjs-interop';
-import {Aircraft, Flight} from './flight-detail.model';
+import {Aircraft, Flight, Price} from './flight-detail.model';
 
 export const validateCity = (path: FieldPath<string>, allowed: string[]): void => {
   validate(path, (ctx) => {
@@ -111,9 +111,35 @@ function validateCityHttp(schema: FieldPath<string>) {
   });
 }
 
+function validateDuplicatePrices(prices: FieldPath<Price[]>) {
+  validate(prices, (ctx) => {
+    const prices = ctx.value();
+    const flightClasses = new Set<string>();
+
+    for (const price of prices) {
+      if (flightClasses.has(price.flightClass)) {
+        return customError({
+          kind: 'duplicateFlightClass',
+          message: 'There can only be one price per flight class',
+          flightClass: price.flightClass,
+        });
+      }
+      flightClasses.add(price.flightClass);
+    }
+
+    return null;
+  });
+}
+
 export const aircraftSchema = schema<Aircraft>((path) => {
   required(path.registration);
   required(path.type);
+});
+
+export const priceSchema = schema<Price>((path) => {
+  required(path.flightClass);
+  required(path.amount);
+  min(path.amount, 0);
 });
 
 export const flightSchema = schema<Flight>((path) => {
@@ -136,5 +162,8 @@ export const flightSchema = schema<Flight>((path) => {
   validateCityHttp(path.from);
 
   apply(path.aircraft, aircraftSchema);
+
+  applyEach(path.prices, priceSchema);
+  validateDuplicatePrices(path.prices);
 
 });
