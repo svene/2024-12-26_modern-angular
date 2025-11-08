@@ -55,7 +55,7 @@ import {D10s01SigformComponent} from './d10_signalforms-dynamic/d10s01-sigform.c
 })
 export class AppComponent {
   title = 'modern-angular';
-  selection = signal<Demo>('d10s01-sigform');
+  selection = signal<Demo>('d09s01-sigform');
 
   selectDemo(v: Demo) {
     this.selection.set(v);
