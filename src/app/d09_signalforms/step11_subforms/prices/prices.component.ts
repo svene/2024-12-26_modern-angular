@@ -1,6 +1,6 @@
 import {Component, input} from '@angular/core';
 import {ValidationErrorsComponent} from '../common/validation-errors.component';
-import {Field, FieldState, FieldTree} from '@angular/forms/signals';
+import {FormField, FieldState, FieldTree} from '@angular/forms/signals';
 import {Flight, InitialPrice, Price} from '../flight-detail.model';
 
 @Component({
@@ -8,7 +8,7 @@ import {Flight, InitialPrice, Price} from '../flight-detail.model';
   templateUrl: './prices.component.html',
   imports: [
     ValidationErrorsComponent,
-    Field
+    FormField,
   ]
 })
 export class PricesComponent {

@@ -8,7 +8,7 @@
     <input
       class="input"
       [ngClass]="{'is-danger': aircraftForm().type().errors().length > 0}"
-      [field]="aircraftForm().type"
+      [formField]="aircraftForm().type"
       type="number"
       placeholder="Aircraft Type"
     >
@@ -27,7 +27,7 @@
     <input
       class="input"
       [ngClass]="{'is-danger': aircraftForm().registration().errors().length > 0}"
-      [field]="aircraftForm().registration"
+      [formField]="aircraftForm().registration"
       type="number"
       placeholder="Aircraft Registration"
     >

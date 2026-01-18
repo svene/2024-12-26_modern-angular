@@ -1,7 +1,7 @@
 import {Component, signal} from '@angular/core';
 import {httpResource} from '@angular/common/http';
 import {z as zod} from 'zod';
-import {apply, Field, form, minLength, required, schema, Schema} from '@angular/forms/signals';
+import {apply, FormField, form, minLength, required, schema, Schema} from '@angular/forms/signals';
 
 export type FormModel = {
   id: string,
@@ -35,20 +35,20 @@ const nameFieldSchema: Schema<string> = schema((path) => {
 
     <form>
       <div>
-      <label>Id: <input type="text" [field]="searchForm.id" placeholder="Enter id"></label>
+      <label>Id: <input type="text" [formField]="searchForm.id" placeholder="Enter id"></label>
       @for (error of searchForm.id().errors(); track $index) {
         <div style="color: red">{{ error.message }}</div> <!-- https://www.youtube.com/watch?v=CEAVN_pkCXU  8:50 -->
       }
       </div>
 
       <div>
-      <label>Name: <input type="text" [field]="searchForm.name" placeholder="Enter name"></label>
+      <label>Name: <input type="text" [formField]="searchForm.name" placeholder="Enter name"></label>
       @for (error of searchForm.name().errors(); track $index) {
         <div style="color: red">{{ error.message }}</div>
       }
       </div>
       <div>
-      <label>Enable: <input type="checkbox" [field]="searchForm.withName"></label>
+      <label>Enable: <input type="checkbox" [formField]="searchForm.withName"></label>
       </div>
     </form>
 
@@ -66,7 +66,7 @@ const nameFieldSchema: Schema<string> = schema((path) => {
     }
   `,
   imports: [
-    Field
+    FormField
   ]
 })
 export class D07Sigform2Component {

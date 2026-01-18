@@ -17,12 +17,13 @@
         <td>
           <input
             class="input"
-            [field]="price.flightClass"
+            [formField]="price.flightClass"
           /></td>
         <td>
           <input
             class="input"
-            [field]="price.amount"
+            [formField]="price.amount"
+            type="number"
           /></td>
         <td>
           <app-validation-errors [errors]="price().errorSummary()"></app-validation-errors>

@@ -19,3 +19,4 @@ export type Flight = {
   aircraft: Aircraft;
   prices: Price[];
 }
+

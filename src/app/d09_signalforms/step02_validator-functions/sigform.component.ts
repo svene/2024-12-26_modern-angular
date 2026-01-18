@@ -1,13 +1,13 @@
 import {Component, inject, linkedSignal} from '@angular/core';
 import {FlightDetailStore} from './flight-detail.store';
-import {customError, Field, FieldPath, form, minLength, required, validate} from '@angular/forms/signals';
+import {FormField, SchemaPath, form, minLength, required, validate} from '@angular/forms/signals';
 import {JsonPipe, NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-sigform',
   templateUrl: 'sigform.component.html',
   imports: [
-    Field,
+    FormField,
     JsonPipe,
     NgClass
   ]
@@ -18,18 +18,18 @@ export class SigformComponent {
 
   flight = linkedSignal(() => this.store.flight());
 
-  validateCity(path: FieldPath<string>, allowed: string[]): void {
+  validateCity(path: SchemaPath<string>, allowed: string[]): void {
     validate(path, (ctx) => {
       const value = ctx.value();
       if (allowed.includes(value)) {
         return null;
       }
 
-      return customError({
+      return {
         kind: 'city',
         value,
         allowed,
-      });
+      };
     });
   }
 

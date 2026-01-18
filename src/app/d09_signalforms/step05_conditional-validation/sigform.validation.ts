@@ -1,18 +1,18 @@
 import {Flight} from './flight-detail.store';
-import {applyWhenValue, customError, disabled, FieldPath, min, minLength, required, schema, validate} from '@angular/forms/signals';
+import {applyWhenValue, disabled, SchemaPath, min, minLength, required, schema, validate} from '@angular/forms/signals';
 
-export const validateCity = (path: FieldPath<string>, allowed: string[]): void => {
+export const validateCity = (path: SchemaPath<string>, allowed: string[]): void => {
   validate(path, (ctx) => {
   const value = ctx.value();
   if (allowed.includes(value)) {
     return null;
   }
 
-  return customError({
+  return {
     kind: 'city',
     value,
     allowed,
-  });
+  };
 });
 }
 

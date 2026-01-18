@@ -1,7 +1,7 @@
 import {Component, input} from '@angular/core';
 import {ValidationErrorsComponent} from '../common/validation-errors.component';
 import {NgClass} from '@angular/common';
-import {Field, FieldTree} from '@angular/forms/signals';
+import {FormField, FieldTree} from '@angular/forms/signals';
 import {Aircraft} from '../flight-detail.model';
 
 @Component({
@@ -10,7 +10,7 @@ import {Aircraft} from '../flight-detail.model';
   imports: [
     ValidationErrorsComponent,
     NgClass,
-    Field
+    FormField
   ]
 })
 export class AircraftComponent {

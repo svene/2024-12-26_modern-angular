@@ -14,8 +14,8 @@
   <tbody>
     @for(price of flightForm().prices; track price) {
       <tr>
-        <td><input [field]="price.flightClass" /></td>
-        <td><input [field]="price.amount" /></td>
+        <td><input [formField]="price.flightClass" /></td>
+        <td><input [formField]="price.amount" type="number" /></td>
         <td>
           <app-validation-errors [errors]="price().errorSummary()"/>
         </td>

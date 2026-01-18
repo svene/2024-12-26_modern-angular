@@ -1,6 +1,6 @@
 import {Component, inject, linkedSignal} from '@angular/core';
 import {FlightDetailStore} from './flight-detail.store';
-import {Field, form} from '@angular/forms/signals';
+import {FormField, form} from '@angular/forms/signals';
 import {NgClass} from '@angular/common';
 import {flightSchema} from './sigform.validation';
 import {ValidationErrorsComponent} from './common/validation-errors.component';
@@ -9,10 +9,10 @@ import {ValidationErrorsComponent} from './common/validation-errors.component';
   selector: 'app-sigform',
   templateUrl: 'sigform.component.html',
   imports: [
-    Field,
     NgClass,
     ValidationErrorsComponent,
     ValidationErrorsComponent,
+    FormField,
   ]
 })
 export class SigformComponent {

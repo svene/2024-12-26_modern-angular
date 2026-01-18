@@ -7,8 +7,8 @@
       <input
         class="input"
         [ngClass]="{'is-danger': flightForm.id().errors().length > 0}"
-        [field]="flightForm.id"
-        type="text"
+        [formField]="flightForm.id"
+        type="number"
         placeholder="Enter id"
       >
     </div>
@@ -26,7 +26,7 @@
       <input
         class="input"
         [ngClass]="{'is-danger': flightForm.from().errors().length > 0}"
-        [field]="flightForm.from"
+        [formField]="flightForm.from"
         type="text"
         placeholder="Enter airport"
       >
@@ -45,7 +45,7 @@
       <input
         class="input"
         [ngClass]="{'is-danger': flightForm.to().errors().length > 0}"
-        [field]="flightForm.to"
+        [formField]="flightForm.to"
         type="text"
         placeholder="Enter airport"
       >

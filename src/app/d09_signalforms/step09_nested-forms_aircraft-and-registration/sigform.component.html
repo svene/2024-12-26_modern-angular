@@ -8,8 +8,8 @@
       <input
         class="input"
         [ngClass]="{'is-danger': flightForm.id().errors().length > 0}"
-        [field]="flightForm.id"
-        type="text"
+        [formField]="flightForm.id"
+        type="number"
         placeholder="Enter id"
       >
     </div>
@@ -26,7 +26,7 @@
       <input
         class="input"
         [ngClass]="{'is-danger': flightForm.from().errors().length > 0}"
-        [field]="flightForm.from"
+        [formField]="flightForm.from"
         type="text"
         placeholder="Enter airport"
       >
@@ -47,7 +47,7 @@
       <input
         class="input"
         [ngClass]="{'is-danger': flightForm.to().errors().length > 0}"
-        [field]="flightForm.to"
+        [formField]="flightForm.to"
         type="text"
         placeholder="Enter airport"
       >
@@ -65,7 +65,7 @@
       <input
         class="input"
         [ngClass]="{'is-danger': flightForm.delay().errors().length > 0}"
-        [field]="flightForm.delay"
+        [formField]="flightForm.delay"
         type="number"
         placeholder="Enter delay"
       >
@@ -81,7 +81,7 @@
     <label class="checkbox">Delayed
       <input
         type="checkbox"
-        [field]="flightForm.delayed"
+        [formField]="flightForm.delayed"
       >
     </label>
   </div>
@@ -97,7 +97,7 @@
       <input
         class="input"
         [ngClass]="{'is-danger': aircraftForm.type().errors().length > 0}"
-        [field]="aircraftForm.type"
+        [formField]="aircraftForm.type"
         type="number"
         placeholder="Aircraft Type"
       >
@@ -115,7 +115,7 @@
       <input
         class="input"
         [ngClass]="{'is-danger': aircraftForm.registration().errors().length > 0}"
-        [field]="aircraftForm.registration"
+        [formField]="aircraftForm.registration"
         type="number"
         placeholder="Aircraft Registration"
       >

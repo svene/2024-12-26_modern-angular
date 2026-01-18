@@ -1,21 +1,21 @@
-import {apply, applyEach, applyWhenValue, customError, disabled, FieldPath, min, minLength, required, schema, validate, validateAsync, validateHttp, validateTree} from '@angular/forms/signals';
+import {apply, applyEach, applyWhenValue, disabled, SchemaPath, min, minLength, required, schema, validate, validateAsync, validateHttp, validateTree} from '@angular/forms/signals';
 import {Observable, of} from 'rxjs';
 import {delay, map} from 'rxjs/operators';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {Aircraft, Flight, Price} from './flight-detail.model';
 
-export const validateCity = (path: FieldPath<string>, allowed: string[]): void => {
+export const validateCity = (path: SchemaPath<string>, allowed: string[]): void => {
   validate(path, (ctx) => {
   const value = ctx.value();
   if (allowed.includes(value)) {
     return null;
   }
 
-  return customError({
+  return {
     kind: 'city',
     value,
     allowed,
-  });
+  };
 });
 }
 
@@ -24,15 +24,15 @@ export const delayedFlight = schema<Flight>((path) => {
   min(path.delay, 15);
 });
 
-function validateRoundTripTree(schema: FieldPath<Flight>) {
+function validateRoundTripTree(schema: SchemaPath<Flight>) {
   validateTree(schema, (ctx) => {
-    const from = ctx.field.from().value();
-    const to = ctx.field.to().value();
+    const from = ctx.fieldTree.from().value();
+    const to = ctx.fieldTree.to().value();
 
     if (from === to) {
       return {
         kind: 'roundtrip_tree',
-        field: ctx.field.from,
+        field: ctx.fieldTree.from,
         from,
         to,
       };
@@ -41,18 +41,18 @@ function validateRoundTripTree(schema: FieldPath<Flight>) {
   });
 }
 
-function validateRoundTrip(schema: FieldPath<Flight>) {
+function validateRoundTrip(schema: SchemaPath<Flight>) {
   validate(schema, (ctx) => {
-    const from = ctx.field.from().value();
-    const to = ctx.field.to().value();
+    const from = ctx.fieldTree.from().value();
+    const to = ctx.fieldTree.to().value();
 
     if (from === to) {
-      return customError({
+      return {
         kind: 'roundtrip',
-        target: ctx.field.from,
+        target: ctx.fieldTree.from,
         from,
         to,
-      });
+      };
     }
     return null;
   });
@@ -66,7 +66,7 @@ function rxValidateAirport(airport: string): Observable<boolean> {
     map(() => airport !== 'Graz')
   );
 }
-function validateCityAsync(schema: FieldPath<string>) {
+function validateCityAsync(schema: SchemaPath<string>) {
   validateAsync(schema, {
     params: (ctx) => ({
       value: ctx.value(),
@@ -91,7 +91,7 @@ function validateCityAsync(schema: FieldPath<string>) {
   });
 }
 
-function validateCityHttp(schema: FieldPath<string>) {
+function validateCityHttp(schema: SchemaPath<string>) {
   validateHttp(schema, {
     request: (ctx) => ({
       url: 'https://demo.angulararchitects.io/api/flight',
@@ -111,18 +111,18 @@ function validateCityHttp(schema: FieldPath<string>) {
   });
 }
 
-function validateDuplicatePrices(prices: FieldPath<Price[]>) {
+function validateDuplicatePrices(prices: SchemaPath<Price[]>) {
   validate(prices, (ctx) => {
     const prices = ctx.value();
     const flightClasses = new Set<string>();
 
     for (const price of prices) {
       if (flightClasses.has(price.flightClass)) {
-        return customError({
+        return {
           kind: 'duplicateFlightClass',
           message: 'There can only be one price per flight class',
           flightClass: price.flightClass,
-        });
+        };
       }
       flightClasses.add(price.flightClass);
     }

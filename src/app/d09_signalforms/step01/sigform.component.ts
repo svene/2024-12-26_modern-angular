@@ -1,13 +1,13 @@
 import {Component, inject, linkedSignal} from '@angular/core';
 import {FlightDetailStore} from './flight-detail.store';
-import {Field, form, required} from '@angular/forms/signals';
+import {FormField, form, required} from '@angular/forms/signals';
 import {JsonPipe} from '@angular/common';
 
 @Component({
   selector: 'app-sigform',
   templateUrl: 'sigform.component.html',
   imports: [
-    Field,
+    FormField,
     JsonPipe
   ]
 })

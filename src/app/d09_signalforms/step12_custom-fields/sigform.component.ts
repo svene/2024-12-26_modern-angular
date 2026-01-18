@@ -1,6 +1,6 @@
 import {Component, inject, linkedSignal} from '@angular/core';
 import {FlightDetailStore} from './flight-detail.store';
-import {Field, form} from '@angular/forms/signals';
+import {FieldTree, form} from '@angular/forms/signals';
 import {flightSchema} from './sigform.validation';
 import {ValidationErrorsComponent} from './common/validation-errors.component';
 import {InitialPrice} from './flight-detail.model';

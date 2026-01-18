@@ -1,6 +1,6 @@
 import {Component, inject, linkedSignal} from '@angular/core';
 import {FlightDetailStore} from './flight-detail.store';
-import {customError, Field, FieldPath, form, minLength, required, validate} from '@angular/forms/signals';
+import {FormField, SchemaPath, form, minLength, required, validate} from '@angular/forms/signals';
 import {NgClass} from '@angular/common';
 import {ValidationErrorsComponent} from './common/validation-errors.component';
 
@@ -8,7 +8,7 @@ import {ValidationErrorsComponent} from './common/validation-errors.component';
   selector: 'app-sigform',
   templateUrl: 'sigform.component.html',
   imports: [
-    Field,
+    FormField,
     NgClass,
     ValidationErrorsComponent
   ]
@@ -19,18 +19,18 @@ export class SigformComponent {
 
   flight = linkedSignal(() => this.store.flight());
 
-  validateCity(path: FieldPath<string>, allowed: string[]): void {
+  validateCity(path: SchemaPath<string>, allowed: string[]): void {
     validate(path, (ctx) => {
       const value = ctx.value();
       if (allowed.includes(value)) {
         return null;
       }
 
-      return customError({
+      return {
         kind: 'city',
         value,
         allowed,
-      });
+      };
     });
   }
 

@@ -1,6 +1,6 @@
 import {Component, input} from '@angular/core';
 import {FieldDef} from './model';
-import {Field, FieldState} from '@angular/forms/signals';
+import {FormField, FieldState} from '@angular/forms/signals';
 import {ValidationErrorsComponent} from './common/validation-errors.component';
 
 @Component({
@@ -15,8 +15,7 @@ import {ValidationErrorsComponent} from './common/validation-errors.component';
           {{ fieldDef.label }}
           <input
             class="{{fieldDef.type}}"
-            [type]="fieldDef.type"
-            [field]="field"
+            [formField]="field"
           />
         </label>
         <app-validation-errors
@@ -26,7 +25,7 @@ import {ValidationErrorsComponent} from './common/validation-errors.component';
     }
   `,
   imports: [
-    Field,
+    FormField,
     ValidationErrorsComponent
   ]
 })

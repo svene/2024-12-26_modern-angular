@@ -1,18 +1,18 @@
 import {Flight} from './flight-detail.store';
-import {applyWhenValue, customError, disabled, FieldPath, min, minLength, required, schema, validate, validateTree} from '@angular/forms/signals';
+import {applyWhenValue,  disabled, SchemaPath, min, minLength, required, schema, validate, validateTree} from '@angular/forms/signals';
 
-export const validateCity = (path: FieldPath<string>, allowed: string[]): void => {
+export const validateCity = (path: SchemaPath<string>, allowed: string[]): void => {
   validate(path, (ctx) => {
   const value = ctx.value();
   if (allowed.includes(value)) {
     return null;
   }
 
-  return customError({
+  return {
     kind: 'city',
     value,
     allowed,
-  });
+  };
 });
 }
 
@@ -21,15 +21,15 @@ export const delayedFlight = schema<Flight>((path) => {
   min(path.delay, 15);
 });
 
-function validateRoundTripTree(schema: FieldPath<Flight>) {
+function validateRoundTripTree(schema: SchemaPath<Flight>) {
   validateTree(schema, (ctx) => {
-    const from = ctx.field.from().value();
-    const to = ctx.field.to().value();
+    const from = ctx.fieldTree.from().value();
+    const to = ctx.fieldTree.to().value();
 
     if (from === to) {
       return {
         kind: 'roundtrip_tree',
-        field: ctx.field.from,
+        field: ctx.fieldTree.from,
         from,
         to,
       };
@@ -38,18 +38,18 @@ function validateRoundTripTree(schema: FieldPath<Flight>) {
   });
 }
 
-function validateRoundTrip(schema: FieldPath<Flight>) {
+function validateRoundTrip(schema: SchemaPath<Flight>) {
   validate(schema, (ctx) => {
-    const from = ctx.field.from().value();
-    const to = ctx.field.to().value();
+    const from = ctx.fieldTree.from().value();
+    const to = ctx.fieldTree.to().value();
 
     if (from === to) {
-      return customError({
+      return {
         kind: 'roundtrip',
-        target: ctx.field.from,
+        target: ctx.fieldTree.from,
         from,
         to,
-      });
+      };
     }
     return null;
   });
