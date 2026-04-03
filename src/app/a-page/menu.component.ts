@@ -16,7 +16,7 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
       <p class="menu-label">Basic Signal Examples</p>
       <ul class="menu-list">
         <a routerLink="/d01-s01-input" routerLinkActive="is-active">Input</a>
-        <a routerLink="/d01-s02-input" routerLinkActive="is-active">Input 2</a>
+        <a routerLink="/d01-s02-input" routerLinkActive="is-active">Input 2<br>(ngModel and model())</a>
         <a routerLink="/d01-select" routerLinkActive="is-active">Select</a>
         <a routerLink="/d02-name" routerLinkActive="is-active">Name</a>
         <a routerLink="/d03-select" routerLinkActive="is-active">Select 2</a>

@@ -54,15 +54,19 @@ import {D01s02Banner2} from './d01-s02-banner2.component';
     <button class="button" (click)="showMore1 = !showMore1">
       {{ showMore1 ? 'Collapse' : 'Expand' }} Banner (parent component)
     </button>
-
     <app-d01-s02-banner1 [(expand)]="showMore1"></app-d01-s02-banner1>
+    <pre class="mt-3">
+      Two-way parent/child binding using Input and Ouput
+    </pre>
 
     <hr>
     <button class="button" (click)="showMore2.set(!showMore2())">
       {{ showMore2() ? 'Collapse' : 'Expand' }} Banner (parent component)
     </button>
-
     <app-d01-s02-banner2 [(expand)]="showMore2"></app-d01-s02-banner2>
+    <pre class="mt-3">
+      Two-way parent/child binding using model()
+    </pre>
 
   `,
 })
