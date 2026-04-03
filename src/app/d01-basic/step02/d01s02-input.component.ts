@@ -1,12 +1,14 @@
-import {Component, signal, Signal} from '@angular/core';
+import {Component, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {D01s02Banner1} from './d01-s02-banner1.component';
+import {D01s02Banner2} from './d01-s02-banner2.component';
 
 @Component({
   selector: 'app-d01-s02-input',
   imports: [
     FormsModule,
-    D01s02Banner1
+    D01s02Banner1,
+    D01s02Banner2
   ],
   template: `
     <div class="level">
@@ -49,11 +51,18 @@ import {D01s02Banner1} from './d01-s02-banner1.component';
     </pre>
 
     <hr>
-    <button class="button" (click)="showMore = !showMore">
-      {{showMore ? 'Collapse' : 'Expand' }} Banner (parent component)
+    <button class="button" (click)="showMore1 = !showMore1">
+      {{ showMore1 ? 'Collapse' : 'Expand' }} Banner (parent component)
     </button>
 
-    <app-d01-s02-banner [(expand)]="showMore"></app-d01-s02-banner>
+    <app-d01-s02-banner1 [(expand)]="showMore1"></app-d01-s02-banner1>
+
+    <hr>
+    <button class="button" (click)="showMore2.set(!showMore2())">
+      {{ showMore2() ? 'Collapse' : 'Expand' }} Banner (parent component)
+    </button>
+
+    <app-d01-s02-banner2 [(expand)]="showMore2"></app-d01-s02-banner2>
 
   `,
 })
@@ -61,7 +70,8 @@ export class D01s02InputComponent {
   inputvalue1 = '';
   inputvalue2 = '';
 
-  showMore = false;
+  showMore1 = false;
+  showMore2 = signal(false);
 
 
 }
