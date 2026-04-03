@@ -7,7 +7,6 @@ import {FormsModule} from '@angular/forms';
     FormsModule
   ],
   template: `
-    <h6 class="title is-6">D01 S01 Input Demo</h6>
     <div class="level">
       <input class="input level-left" [(ngModel)]="inputvalue">
       <button class="button level-right" (click)="inputvalue.set('button-value')"> Set value</button>
@@ -20,7 +19,7 @@ import {FormsModule} from '@angular/forms';
     </pre>
   `,
 })
-export class D01S01InputComponent {
+export class D01s01InputComponent {
   inputvalue = signal('');
 
 
