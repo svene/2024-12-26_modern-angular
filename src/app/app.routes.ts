@@ -20,9 +20,11 @@ import {D09s10SigformComponent} from './d09_signalforms/step10_nested_forms_and_
 import {D09s11SigformComponent} from './d09_signalforms/step11_subforms/d09s11-sigform.component';
 import {D09s12SigformComponent} from './d09_signalforms/step12_custom-fields/d09s12-sigform.component';
 import {D10s01SigformComponent} from './d10_signalforms-dynamic/d10s01-sigform.component';
+import {D01S01InputComponent} from './d01-basic/step05/d01s01-input.component';
 
 export const routes: Routes = [
-  {path: '', redirectTo: 'd01-select', pathMatch: 'full'},
+  {path: '', redirectTo: 'd01-s01-input', pathMatch: 'full'},
+  {path: 'd01-s01-input', component: D01S01InputComponent},
   {path: 'd01-select', component: D01SelectParentComponent},
   {path: 'd02-name', component: D02NameParentComponent},
   {path: 'd03-select', component: D03SelectParentComponent},
